@@ -4,8 +4,113 @@
 margin: 0;
 padding: 0;
 box-sizing: border-box;
+font-family: "Poppins", sans-serif;
+border: none;
+outline: none;
 }
 html, body{
 height:100%;
 width:100%;
+}
+
+:root{
+    --primary-color: #094913;
+    --secondary-color: #880714;
+    --text: #FAFAFA;
+    --bg-color: #0F1015;
+    --large-button-radius: 10px;
+
+}
+/* =====For Default ============= */
+a {
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* ==================================================================== */
+
+
+
+
+
+
+
+
+.bg{
+    width: 100vw;
+    height: 100dvh;
+    background: url(./Assets/homepageimg01.jpg);
+    background-position: center;
+    background-size: cover;
+    
+}
+
+.bg_cover{
+    width: 100vw;
+    height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.bg_gr{
+    width: 100vw;
+    height: 100dvh;
+    position: absolute;
+    top: 0;
+     background: linear-gradient(153deg, rgb(0, 1, 3) 0%, rgb(16, 16, 20) 35%, rgb(83, 83, 83) 100%);
+    opacity: 0.8;
+    z-index: 0;
+}
+
+.conatin{
+    
+    z-index:  99;
+}
+
+.conatin button{
+    margin-left: 2rem;
+    cursor: pointer;
+    transition:  ease-in linear .6s;
+    z-index:  999;
+}
+
+.conatin button:hover{
+    background-color: var(--secondary-color);
+}
+
+
+ .conatin button,
+ .conatin button a{
+    width: 15rem;
+    height:  4rem;
+    border-radius: var(--large-button-radius);
+    color:var(--text);
+    font-size: 1.5rem;
+    font-weight: 500;
+   
+ }
+
+
+.bg .bg_cover button:nth-child(1)
+{
+    border:  3px solid var(--secondary-color);
+    background: transparent;
+}
+
+.bg .bg_cover button:nth-child(2)
+{
+    background: var(--primary-color);
+    opacity: 1;
 }
