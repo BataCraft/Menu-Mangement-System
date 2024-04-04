@@ -1,6 +1,6 @@
 
 <?php
-include "../header.php";
+include "../Src/header.php";
 
 
 
@@ -12,11 +12,11 @@ include "../header.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../Assets/favicon.ico" type="image/x-icon">
 
-
+    <link rel="stylesheet" href="../Src/CSS/style.css">
 
     <!-- Custome CSS -->
-    <!-- <link rel="stylesheet" href="../../main.css"> -->
-    <link rel="stylesheet" href="../CSS/login_register.css">
+    <!-- <link rel="stylesheet" href="../../main.css">
+    <link rel="stylesheet" href="../CSS/login_register.css"> -->
     <!-- ======================================================= -->
     <title>Login</title>
 </head>
@@ -43,11 +43,7 @@ include "../header.php";
                    
                 </div>
 
-                <hr style="width: 80%; height: 2px; background-color: #dadada; margin: 32px auto;  ">
-
-                <div class="create_account">
-                    <a href="./register.php" title="Create an Account">Create an account</a>
-                </div>
+               
             </form>
         </div>
         </div>

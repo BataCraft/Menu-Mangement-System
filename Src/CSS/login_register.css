@@ -40,11 +40,11 @@ a {
 #main{
     width: 100vw;
     height: 100vh;
-    background: url(../../Assets/loginpage.jpg);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
 }
 
 .field_group{
