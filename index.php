@@ -15,23 +15,22 @@
 <body>
     <div id="warpper">
         <div class="bg">
-            <div class="bg_cover">
-                <div class="bg_gr"></div>
-                
-                <div class="conatin">
-                    <div class="titles">
-                        <h1 style="color: #fafafa; text-align: center;">Your Ultimate Menu Management Solution</h1>
+    
+            <div class="contain">
+                <div class="bg_gradient"></div>
+                <div class="tittles">
+                    <div class="info">
+                        <h1> Welcome to BCA RESTAURANT WALA: Your Gateway to Culinary Excellence!</h1>
+                        <p> "Explore, Order, Delight: Experience Seamless Menu Management"</p>
                     </div>
-
-
-                    <div>
-
-                        <button class="btn"><a href="./Src/login/login.php">Login</a></button>
-                        <button><a href="">Sign up</a></button>
+                    <div class="btn">
+                        <button><a href="./Src//login/login.php">Login</a></button>
+                        <button><a href="./Src//login/register.php">Sign up</a></button>
                     </div>
-                    
                 </div>
+                
             </div>
+
         </div>
     </div>
 </body>
