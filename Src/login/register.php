@@ -11,7 +11,7 @@ include '../header.php';
 
 
         <div class="field_group">
-            <form action="#">
+            <form action="#" name="register_form">
                 <h1>Register </h1>
                 <div class="fields">
                     <input type="text" placeholder="Enter Your Full Name" value="" name="fname" title="full name" required>
@@ -40,3 +40,4 @@ include '../header.php';
         </div>
     </div>
 </div>
+<script src="./validation/register.js"></script>

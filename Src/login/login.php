@@ -26,19 +26,25 @@ include "../header.php";
 
         
         <div class="field_group">
-            <form action="#">
+            <form action="#" name="login_form">
                 <h1>Login</h1>
                 <div class="fields">
                     <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" required>
+                    <span class="error"></span>
+                </div>
+                <div class="fields">
                     <input type="password" placeholder="Enter Your Password" value="" name="password" required title="password">
+                    <span class="error"></span>
+                    
                     <a href="">forgot password?</a>
                 </div>
+
 
                
 
                 <div>
                     <div class="login_btn">
-                        <button type="submit" name="submit">Login</button>
+                        <button type="submit" name="submit" id="subm">Login</button>
                     </div>
                    
                 </div>
@@ -52,5 +58,6 @@ include "../header.php";
         </div>
         </div>
     </div>
+    <script src="./validation/login.js"></script>
 </body>
 </html>
