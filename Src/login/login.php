@@ -29,8 +29,8 @@ include "../header.php";
             <form action="#">
                 <h1>Login</h1>
                 <div class="fields">
-                    <input type="text" placeholder="Enter Your Email / Username" value="" name="email" title="email">
-                    <input type="password" placeholder="Enter Your Password" value="" name="password">
+                    <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" required>
+                    <input type="password" placeholder="Enter Your Password" value="" name="password" required title="password">
                     <a href="">forgot password?</a>
                 </div>
 

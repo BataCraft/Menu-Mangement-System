@@ -33,12 +33,14 @@ a {
     width: 100vw;
     height: 100vh;
     background-color: var(--bg-color);
+   
 }
 
 
 #main{
     width: 100vw;
     height: 100vh;
+    background: url(../../Assets/loginpage.jpg);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,7 +48,7 @@ a {
 }
 
 .field_group{
-   
+   text-align: center;
     padding: 30px;
     border: 2px solid var(--text);
     border-radius: var(--large-button-radius);
@@ -92,6 +94,7 @@ input[type= "text"]
     border-radius: var(--large-button-radius);
     background-color: var(--primary-color);
     color: var(--text);
+    cursor: pointer;
 
 }
 
