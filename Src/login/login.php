@@ -31,6 +31,7 @@ include "../header.php";
                 <div class="fields">
                     <input type="text" placeholder="Enter Your Email / Username" value="" name="email" title="email">
                     <input type="password" placeholder="Enter Your Password" value="" name="password">
+                    <a href="">forgot password?</a>
                 </div>
 
                
@@ -39,11 +40,13 @@ include "../header.php";
                     <div class="login_btn">
                         <button type="submit" name="submit">Login</button>
                     </div>
-                    <a href="">forgot password?</a>
+                   
                 </div>
 
+                <hr style="width: 80%; height: 2px; background-color: #dadada; margin: 32px auto;  ">
+
                 <div class="create_account">
-                    <a href="" title="Create an Account">Create an account</a>
+                    <a href="./register.php" title="Create an Account">Create an account</a>
                 </div>
             </form>
         </div>

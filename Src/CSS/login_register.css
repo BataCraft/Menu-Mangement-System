@@ -46,9 +46,11 @@ a {
 }
 
 .field_group{
+   
     padding: 30px;
     border: 2px solid var(--text);
     border-radius: var(--large-button-radius);
+  
 }
 
 h1{
@@ -82,11 +84,28 @@ input[type= "text"]
     font-weight: normal;
 }
 
-.login_btn button{
+.login_btn button
+{
     font-size: 1.6rem;
     width: 20rem;
     height: 3rem;
     border-radius: var(--large-button-radius);
+    background-color: var(--primary-color);
+    color: var(--text);
 
 }
 
+.fields a{
+    color: #A6AFFC;
+}
+
+.create_account a{
+     padding: .8rem 4rem;
+     text-align: center;
+     background-color: var(--secondary-color);
+     color: var(--text);
+     font-size: 1.2rem;
+     font-weight: 500;
+     border-radius: var(--large-button-radius);
+
+}
