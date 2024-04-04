@@ -62,6 +62,7 @@ a {
     justify-content: center;
     flex-wrap: wrap;
     position: relative;
+    margin: auto;
 }
 
 .bg_gr{
@@ -74,9 +75,11 @@ a {
     z-index: 0;
 }
 
-.conatin{
-    
+.contain{
+    color: var(--text);
+    text-align: center;
     z-index:  99;
+    
 }
 
 .conatin button{
@@ -113,4 +116,10 @@ a {
 {
     background: var(--primary-color);
     opacity: 1;
+}
+
+h1{
+    
+    color: var(--text);
+    text-align: center;
 }

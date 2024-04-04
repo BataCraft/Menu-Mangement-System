@@ -17,9 +17,19 @@
         <div class="bg">
             <div class="bg_cover">
                 <div class="bg_gr"></div>
+                
                 <div class="conatin">
-                    <button class="btn"><a href="./Src/login/login.php">Login</a></button>
-                    <button><a href="">Sign up</a></button>
+                    <div class="titles">
+                        <h1 style="color: #fafafa; text-align: center;">Your Ultimate Menu Management Solution</h1>
+                    </div>
+
+
+                    <div>
+
+                        <button class="btn"><a href="./Src/login/login.php">Login</a></button>
+                        <button><a href="">Sign up</a></button>
+                    </div>
+                    
                 </div>
             </div>
         </div>
