@@ -18,6 +18,11 @@ include '../header.php';
                     <input type="text" placeholder="Enter Your Full Name" value="" name="fname" title="full name">
                     
                 </div>
+                <!-- <div class="fields">
+                    <input type="email" placeholder="Enter Your Email" value="" name="email">
+                    
+
+                </div> -->
                 <div class="fields">
                     <input type="number" placeholder="Enter Your Phone Number" value="" name="phone">
                     
