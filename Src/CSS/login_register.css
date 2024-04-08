@@ -112,3 +112,13 @@ input[type= "text"]
      border-radius: var(--large-button-radius);
 
 }
+
+.login_btn button:hover{
+    filter: brightness(90%);
+    background-color: #880714;
+
+}
+
+span{
+    color: antiquewhite;
+}

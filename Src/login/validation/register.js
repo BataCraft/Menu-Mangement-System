@@ -1,36 +1,46 @@
-const form = document.registerForm;
+const form = document.register_form;
 const fullname = form.fname;
 const phone = form.phone;
 const address = form.address; 
 const password = form.password;
-const confirmPassword = form.confirmPassword;
-form.addEventListener("submit", function(e) {
-    // Adding event listener to the form for form submission
-// SVGFEGaussianBlurElement
-    if (fullname.value === "") { 
-        fullname.nextElementSibling.innerText = "Enter your fullname";
-        e.preventDefault();
-    }
-    if (phone.value === "") { 
-        phone.nextElementSibling.innerText = "Enter your phoneNo";
-        e.preventDefault();
-    }
-    if (address.value === "") { 
-        address.nextElementSibling.innerText = "Enter your address";
-        e.preventDefault();
-    }
-    if (password.value === "") { 
-        password.nextElementSibling.innerText = "Enter your password";
-        e.preventDefault();
-    }
-    if (confirmPassword.value === "") { 
-        confirmPassword.nextElementSibling.innerText = "Enter your confirmPassword";
+const confirmPassword = form.cpsd;
+
+   
+
+
+
+let myarr = [form, fullname, phone, address, password, confirmPassword];
+
+myarr.forEach(item => {
+    let span = document.createElement('span');
+    span.classList.add(`error`);
+    item.parentElement.append(span);
+});
+
+form.addEventListener('submit', (e) => {
+    if (fullname.value == "" && phone.value == "" && address.value == "" && password.value == "" && confirmPassword.value == "") {
+        form.nextElementSibling.innerText = alert ('Plese fill up form! ');
         e.preventDefault();
     }
 
-    if (confirmPassword.value !== password.value) { /
-        // If passwords don't match, display an error message
-        confirmPassword.nextElementSibling.innerText = "Passwords do not match";
+    else if (fullname.value === '')
+    {
+        fullname.nextElementSibling.innerText = 'Your fullname is empty!';
+        e.preventDefault();
+    }
+    else if (phone.value === '')
+    {
+        phone.nextElementSibling.innerText = 'Your phone number is empty!';
+        e.preventDefault();
+    }
+    else if (address.value === '')
+    {
+        address.nextElementSibling.innerText = 'Your address is empty!';
+        e.preventDefault();
+    }
+    else if (password.value === '')
+    {
+        password.nextElementSibling.innerText = 'Your password is empty!';
         e.preventDefault();
     }
 });

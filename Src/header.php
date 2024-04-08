@@ -10,6 +10,12 @@
     <link rel="stylesheet" href="../../main.css">
     <link rel="stylesheet" href="../CSS/login_register.css">
     <link rel="stylesheet" href="../Src/CSS/login_register.css">
+
+    <style>
+        span {
+            color: red;
+        }
+    </style>
 </head>
 <body>
     
