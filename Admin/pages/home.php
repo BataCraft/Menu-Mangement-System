@@ -25,10 +25,10 @@
                 <div class="box">
                     <div class="card">
                         <div class="icon">
-                            <i class="ri-user-fill" id="card_icons"></i>
+                        <i class="ri-user-line"></i>
                         </div>
                         <div class="info">
-                            <div name="view" type="submit" class="view_users">View users</div>
+                            <div name="view" type="submit" class="view_users">View Users</div>
                             <!-- <button>View users</button> -->
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                 <div class="box">
                     <div class="card">
                         <div class="icon">
-                            <i class="ri-user-fill" id="card_icons"></i>
+                        <i class="ri-edit-line"></i>
                         </div>
                         <div class="info">
                             <div name="view" type="submit" class="view_users">Edit Items</div>
@@ -49,7 +49,7 @@
                 <div class="box">
                     <div class="card">
                         <div class="icon">
-                            <i class="ri-user-fill" id="card_icons"></i>
+                        <i class="ri-user-add-line"></i>
                         </div>
                         <div class="info">
                             <div name="view" type="submit" class="view_users">Add Admin</div>
