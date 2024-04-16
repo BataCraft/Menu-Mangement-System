@@ -26,7 +26,7 @@ include "../connection.php";
 
         
         <div class="field_group">
-            <form action="<?php $_SERVER ["PHP_SET"]?>" method="POST">
+            <form action="" method="POST">
                 <h1>Login</h1>
                 <div class="fields">
                     <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" required>
@@ -52,13 +52,13 @@ include "../connection.php";
 </html>
 
 <?php
-if(isset("submit")){
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = $_POST['password'];
+// if(isset("submit")){
+//     $email = mysqli_real_escape_string($conn, $_POST['email']);
+//     $password = $_POST['password'];
 
 
-    $sql = "SELECT "
-}
+//     // $sql = "SELECT ";
+// }
 
 
 ?>
