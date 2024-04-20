@@ -1,63 +1,124 @@
 
-<?php
-include "../header.php";
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../../Assets/favicon.ico" type="image/x-icon">
+    <title>Login Page</title>
 
-
-
-    <!-- Custome CSS -->
-    <!-- <link rel="stylesheet" href="../../main.css"> -->
-    <link rel="stylesheet" href="../CSS/login_register.css">
-    <!-- ======================================================= -->
-    <title>Login</title>
+    <!-- Css LINK -->
+    <link rel="stylesheet" href="../CSS/register.css">
 </head>
 <body>
     <div id="warpper">
         <div id="main">
+            <div id="container" style="width: 30rem;">
+                <form action="#" method="POST" id="login_form">
+                    <h1>Login Pages</h1>
+                    <section>
+                        <!-- user email -->
+                        <div class="fields">
+                            <label for="email">Email Address</label>
+                            <input type="email" value="" placeholder="Enter your email address" id="email">
+                            <span id="errorMsg"></span>
+                        </div>
 
-        
-        <div class="field_group">
-            <form action="#" name="login_form">
-                <h1>Login</h1>
-                <div class="fields">
-                    <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" required>
-                    <span class="error"></span>
-                </div>
-                <div class="fields">
-                    <input type="password" placeholder="Enter Your Password" value="" name="password" required title="password">
-                    <span class="error"></span>
-                    
-                    <a href="">forgot password?</a>
-                </div>
+                        <!-- USer password -->
+                        <div class="fields">
+                            <label for="password">Password</label>
+                            <input type="password" value="" placeholder="Enter your password"  id="password">
+                            <span id="errorMsg"></span>
+                            <span><a href="forgetpassword.php">forgot password?</a></span>
+                        </div>
+                    </section>
 
 
-               
+                    <!-- Submit button -->
+                    <div class="login_btns">
 
-                <div>
-                    <div class="login_btn">
-                        <button type="submit" name="submit" id="subm">Login</button>
+                        <div class="btn">
+                            <button name="submit" type="submit" id="login">Login</button>
+                           
+                        </div>
+
+                        
+                        <div class="btn" id="register">
+                        <hr>
+                            <button name="register" id="register">
+                                <a href="./register.php" style="color: #ffff;">Register</a>
+                            </button>
+                        </div>
                     </div>
-                   
-                </div>
+                </form>
 
-                <hr style="width: 80%; height: 2px; background-color: #dadada; margin: 32px auto;  ">
+                
+            </div>
+        </div>
 
-                <div class="create_account">
-                    <a href="./register.php" title="Create an Account">Create an account</a>
-                </div>
-            </form>
-        </div>
-        </div>
     </div>
-    <script src="./validation/login.js"></script>
+
+    <script>
+        /*
+        // let registerButton = document.getElementById('register');
+
+        // registerButton.addEventListener('click', ()=>{
+        //     window.location.href= 'http://project.loc/Src//login/register.php';
+        // });
+
+        const email = document.getElementById('email'),
+        password = document.getElementById('password'),
+        login = document.getElementById('login');
+        const errorMsgElement = inputElement.nextSibling;
+
+
+      
+
+            let Validation = () =>{
+                Login.addEventListener('click', (e)=>{
+                   if(email.value === ''){
+                    email.parentElement.innerText = ('Plese fill up email');
+                    e.preventDefault();
+                   }
+                })
+            }
+Validation();
+
+*/
+
+const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginForm = document.getElementById('login_form');
+    const errorMsgs = document.querySelectorAll('.errorMsg');
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+    loginForm.addEventListener('submit', (e) => {
+      let isValid = true;
+
+      // Reset error messages
+      errorMsgs.forEach(msg => msg.textContent = '');
+
+      // Validate email
+      if (emailInput.value.trim() === '') {
+        emailInput.nextElementSibling.textContent = 'Please enter your email address.';
+        isValid = false;
+      } else if (!emailRegex.test(emailInput.value.trim())) {
+        emailInput.nextElementSibling.textContent = 'Please enter a valid email address.';
+        isValid = false;
+      }
+
+      // Validate password
+      if (passwordInput.value.trim() === '') {
+        passwordInput.nextElementSibling.textContent = 'Please enter your password.';
+        isValid = false;
+      } 
+
+      // Prevent form submission if validation fails
+      if (!isValid) {
+        e.preventDefault();
+      }
+    });
+    </script>
 </body>
 </html>
