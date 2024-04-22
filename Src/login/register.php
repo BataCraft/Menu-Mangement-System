@@ -1,7 +1,25 @@
-<?php
-include '../../connection.php';
 
 
+<?php 
+
+if(isset($_POST['submit']))
+{
+    include '../../connection.php';
+
+    $fname = $_POST['fname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST ['address'];
+    $password = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
+
+    $sql = "INSERT INTO user (fname, uemail, uphone, address, password, cpassword) VALUES ('$fname', '$email', '$phone', '$address', '$password', '$cpassword') ";
+
+
+    $query = mysqli_query($conn, $sql) or die ("something went wrong");
+
+    header("Location: http://project.loc/Src//login/login.php");
+}
 
 ?>
 
@@ -28,7 +46,7 @@ include '../../connection.php';
     <div id="Warpper">
         <div id="main">
             <div class="container">
-                <form id="user_register" onsubmit="return validateForm()">
+                <form id="user_register" onsubmit="return validateForm()" action="#" method="POST">
                     <h1>Register New User!</h1>
                     <section>
                         <!-- User Full Name -->
@@ -70,7 +88,7 @@ include '../../connection.php';
                     </section>
                     <!-- Submit Button -->
                     <div class="btn">
-                        <button type="submit" name="submit">Register</button>
+                        <button type="submit" name="submit" value="submit">Register</button>
                     </div>
                     <div class="link">
                         <a href="./login.php">Already have an account?</a>
@@ -146,27 +164,3 @@ include '../../connection.php';
 </body>
 
 </html>
-
-
-<?php 
-if(isset($_POST['submit']))
-{
-    $fname = $_POST['fname'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST ['address'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
-
-    $sql = "INSERT INTO user (fname, uemail, uphone, address, password, cpassword) VALUES ('$fname', '$email', '$phone', '$address', '$password', '$cpassword') ";
-
-
-    $query = mysqli_query($conn, $sql) or die ("something went wrong");
-
-    header(": http://project.loc/Src//login/login.php");
-}
-
-
-
-
-?>

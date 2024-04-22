@@ -10,11 +10,8 @@ $conn = new mysqli($host, $user, $password, $db_name);
 
 if($conn)
 {
-    // echo "Connect sucessfully";
+    echo "Connect sucessfully";
 
 }
 
-else echo "something went wrong"
-
-
-?>
+else echo "something went wrong";
