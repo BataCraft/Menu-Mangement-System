@@ -141,7 +141,7 @@ if(isset($_POST['submit']))
                 document.getElementById("passwordError").textContent = "Please enter your password.";
                 isValid = false;
             } else if (!passwordRegex.test(passwordInput.value.trim())) {
-                document.getElementById("passwordError").textContent = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+                document.getElementById("passwordError").textContent = `Password must be at least 8 characters long <br> and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.`;
                 isValid = false;
             }
 

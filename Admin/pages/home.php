@@ -29,6 +29,10 @@ include '../../connection.php';
     <form action="" method="$_GET">
         <div id="main">
             <div class="container">
+                <div class="header">
+                    <h1>Welcome!</h1>
+                    <h2>Admin</h2>
+                </div>
                 <div class="section">
                     <div class="box">
                         <div class="card">

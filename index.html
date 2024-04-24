@@ -13,7 +13,14 @@
     <title>MENU MANAGEMENT SYSTEM</title>
 </head>
 <body>
+    
+
     <div id="warpper">
+
+        <div id="loader">
+            <img src="../../Assets/logo.jpeg" style="background-position: center; width: 100vw; height: 100vh; background-size: cover; overflow: hidden;">
+
+        </div>
         <div class="bg">
     
             <div class="contain">
@@ -33,5 +40,12 @@
 
         </div>
     </div>
+
+    <script>
+        var loader = document.getElementById("loader");
+        window.addEventListener("load", function(){
+            loader.style.display = "none";
+        })
+    </script>
 </body>
 </html>
