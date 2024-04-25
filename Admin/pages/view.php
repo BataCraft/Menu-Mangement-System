@@ -47,8 +47,10 @@ $data = mysqli_query($conn, $sql) or die ("Queary Failed");
     </style>
 </head>
 <body>
-
 <div>
+    <?php include '../pages/adminnav.php';?>
+</div>
+<div style="padding: 0 132px;">
     <?php 
     echo "<table>";
     echo "<tr>

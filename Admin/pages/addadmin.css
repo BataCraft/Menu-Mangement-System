@@ -7,6 +7,7 @@ box-sizing: border-box;
 font-family: "Poppins", sans-serif;
 border: none;
 outline: none;
+/* overflow: hidden; */
 }
 
 /* html, body{
@@ -87,11 +88,3 @@ width:100%;
     }
   }
 
-
-  .header{
-    width: 100vw;
-    height: 100vh;
-    background-color: rebeccapurple;
-    display: flex;
-    flex-direction: row;
-  }

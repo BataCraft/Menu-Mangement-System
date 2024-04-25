@@ -27,19 +27,22 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Admin</title>
     <!-- CSS LINK -->
-    <link rel="stylesheet" href="./addadmin.css">
+    <link rel="stylesheet" href="../pages/addadmin.css">
 </head>
 <body>
     <div id="warpper">
         <header>
-            <div class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 0 132px; height: 50px; background-color: lightgreen;">
+            <div>
+                  <?php include '../pages/adminnav.php';?>
+                </div>
+            <div class="header" style="display: flex; justify-content: space-between; align-items: center; padding: 0 132px; height: 50px; background-color: lightgreen; overflow: hidden;" >
 
                 <h5 style="font-size: 16px; font-weight: normal;">View all admins</h5>
                 <button style="padding: 10px 20px; border-radius: 10px;"><a href="../pages/alladminpage.php">View Admin</a></button>
             </div>
         </header>
         <div id="main">
-            <form action="#" method="POST" id="form_fill"> 
+            <form action="" method="POST" id="form_fill"> 
                 <div class="container">
                     <!-- New Admin Name -->
                     <div class="input_fields">
@@ -72,7 +75,10 @@ if (isset($_POST['submit'])) {
                 </div>
             </form>
         </div>
+<?php 
+mysqli_close($conn);
 
+?>
         
     </div>
     <script>
