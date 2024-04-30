@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
     $cpsd = $_POST['cpassword'];
 
     $sql = "INSERT INTO admin (a_name, a_email, a_phone, a_password, a_cpassword) VALUES ('$f_name', '$email', '$phone', '$password', '$cpsd')";
+    
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
@@ -41,6 +42,7 @@ if (isset($_POST['submit'])) {
         <div id="main">
             <form action="#" method="POST" id="form_fill"> 
                 <div class="container">
+                    <h1>Edit Profile</h1>
                     <!-- New Admin Name -->
                     <div class="input_fields">
                         <label for="fullname">Full Name <span style="color: red;">*</span></label>
@@ -68,7 +70,7 @@ if (isset($_POST['submit'])) {
                     </div>
                 </div>
                 <div>
-                    <button name="submit" id="submit" type="submit"  onclick="verify()">Add</button>
+                    <button name="submit" id="submit" type="submit"  onclick="verify()">Update</button>
                 </div>
             </form>
         </div>

@@ -86,7 +86,10 @@ a {
 
 .tittles h1{
     font-size: 1.6rem;
-    padding-bottom: 1.8rem;
+    /* padding-bottom: 1.8rem; */
+    /* line-height: 1; */
+    letter-spacing: 10rem;
+    font-weight: 400;
 }
 .tittles p{
     font-size: 1rem;

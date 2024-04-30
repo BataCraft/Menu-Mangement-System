@@ -1,24 +1,37 @@
-
-
-<?php 
-
-if(isset($_POST['submit']))
-{
+<?php
+// session_start();
+error_reporting(E_ALL);
+if (isset($_POST['submit'])) {
+    error_reporting(E_ALL);
     include '../../connection.php';
 
     $fname = $_POST['fname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-    $address = $_POST ['address'];
+    $address = $_POST['address'];
     $password = $_POST['password'];
     $cpassword = $_POST['cpassword'];
+    // $message = '';
 
-    $sql = "INSERT INTO user (fname, uemail, uphone, address, password, cpassword) VALUES ('$fname', '$email', '$phone', '$address', '$password', '$cpassword') ";
+    $check = "SELECT * FROM user WHERE uemail = '$email'";
+
+    $data_check = mysqli_query($conn, $check);
+
+    if (mysqli_num_rows($data_check) > 0) {
+        echo '<script>';
+        echo 'alert ("Email already Exits!")';
+        echo '</script>';
+    } else {
 
 
-    $query = mysqli_query($conn, $sql) or die ("something went wrong");
 
-    header("Location: http://project.loc/Src//login/login.php");
+        $sql = "INSERT INTO user (fname, uemail, uphone, address, password, cpassword) VALUES ('$fname', '$email', '$phone', '$address', '$password', '$cpassword') ";
+
+
+        $query = mysqli_query($conn, $sql) or die("something went wrong");
+
+        header("Location: http://project.loc/Src//login/login.php");
+    }
 }
 
 ?>
@@ -36,7 +49,7 @@ if(isset($_POST['submit']))
     <link rel="stylesheet" href="../CSS/register.css">
 
     <style>
-        .error{
+        .error {
             color: red;
         }
     </style>
@@ -60,6 +73,7 @@ if(isset($_POST['submit']))
                             <label for="email">Email <span style="color: red;">*</span></label>
                             <input type="email" name="email" id="email" placeholder="Enter Your Email Address" value="">
                             <span class="error" id="emailError"></span>
+
                         </div>
                         <!-- User Phone Number -->
                         <div class="fields">

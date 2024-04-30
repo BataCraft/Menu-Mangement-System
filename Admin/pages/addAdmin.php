@@ -2,23 +2,7 @@
 include '../../connection.php';
 // error_reporting(E_ALL);
 
-if (isset($_POST['submit'])) {
-    $f_name = $_POST['fullname'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $password = $_POST['password'];
-    $cpsd = $_POST['cpassword'];
 
-    $sql = "INSERT INTO admin (a_name, a_email, a_phone, a_password, a_cpassword) VALUES ('$f_name', '$email', '$phone', '$password', '$cpsd')";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-        echo "<script>alert('The new Admin has been created successfully!');</script>";
-        echo "<script>window.open('../index.php', '_self')</script>";
-    } else {
-        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -75,8 +59,28 @@ if (isset($_POST['submit'])) {
                 </div>
             </form>
         </div>
+
 <?php 
-mysqli_close($conn);
+if (isset($_POST['submit'])) {
+    include '../../connection.php';
+
+
+   echo $f_name = $_POST['fullname'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $password = $_POST['password'];
+    $cpsd = $_POST['cpassword'];
+
+    $sql = "INSERT INTO admin (a_name, a_email, a_phone, a_password, a_cpassword) VALUES ('$f_name', '$email', '$phone', '$password', '$cpsd')";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        echo "<script>alert('The new Admin has been created successfully!');</script>";
+        echo "<script>window.open('../index.php', '_self')</script>";
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+}
 
 ?>
         
@@ -104,7 +108,7 @@ mysqli_close($conn);
 
         let form = document.getElementById('form_fill');
 
-        let verify = document.getElementById('submit');
+        // let verify = document.getElementById('submit');
 
          verify.addEventListener('click', (e)=>{
             if(fullname.value === '' && email.value === '' && phone.value === '' &&  password.value == '' && cpsd == '' ){

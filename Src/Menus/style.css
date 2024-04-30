@@ -32,6 +32,8 @@ nav {
     justify-content: space-between;
     align-items: center;
     padding: 20px 132px;
+    position: fixed;
+    background-color: #FAFAFA;
 }
 
 nav ul {
@@ -71,8 +73,15 @@ nav ul li a {
     border: 2px solid var(--bg-color);
     width: 20rem;
     height: 3rem;
+    padding-left: 10px;
     border-radius: var(--large-button-radius);
 }
+
+.right_nav input[type="search"] {
+    font-size: 20px;
+}
+
+
 
 .right_nav button {
     width: 5rem;
@@ -84,4 +93,71 @@ nav ul li a {
 .right_nav button i {
     font-size: 2rem;
     color: var(--text);
+}
+
+#main{
+    /* width: 100%; */
+    padding: 132px;
+
+}
+
+#main h3{
+    font-size: 2rem;
+}
+.box
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 25rem;
+    /* height: 30rem; */
+    margin: 3.2rem auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+    padding: 20px;
+    border-radius: 10px;
+    transition: all .6s ease-in-out;
+}
+
+.card:hover{
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+}
+
+.images img{
+    width: 100%;
+    border-radius: 10px;
+
+}
+
+.details{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 32px;
+}
+
+.details h1{
+    font-size: 3rem;
+}
+
+.details p{
+    padding: 18px;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+.cart{
+    background-color: var(--primary-color);
+    padding: .5rem 1rem;
+    color: #FAFAFA;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.details span{
+    color: darkgray;
 }
