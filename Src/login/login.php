@@ -1,4 +1,46 @@
+<?php 
+error_reporting(E_ALL);
+if(isset($_POST['submit']))
+{
+    include '../../connection.php';
+    error_reporting(E_ALL);
+   $email = $_POST['email'];
+    $password = sha1($_POST['password']);
 
+    $sql = "SELECT uid, uemail, password FROM user WHERE uemail = '$email' AND password = '$password' " ;
+
+    $result = mysqli_query($conn, $sql) or die ("Something worng!");
+
+    if(mysqli_num_rows($result) > 0)
+    {
+        while($row = mysqli_fetch_assoc($result)){
+            session_start();
+            $_SESSION['id'] = $row['uid'];
+            $_SESSION['email'] = $row['uemail'];
+            $_SESSION['psd'] = $row['password'];
+
+            header("location: http://project.loc/Src/Menus/");
+            exit();
+        }
+    }
+    else{
+        echo "<script>";
+        echo "alert('You don't have an account! Please register your account!');";
+        echo "</script>";
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,14 +61,14 @@
                         <!-- user email -->
                         <div class="fields">
                             <label for="email">Email Address</label>
-                            <input type="email" value="" placeholder="Enter your email address" id="email">
+                            <input type="email" value="" placeholder="Enter your email address" id="email" name="email">
                             <span id="errorMsg"></span>
                         </div>
 
                         <!-- USer password -->
                         <div class="fields">
                             <label for="password">Password</label>
-                            <input type="password" value="" placeholder="Enter your password"  id="password">
+                            <input type="password" value="" placeholder="Enter your password" name="password"  id="password">
                             <span id="errorMsg"></span>
                             <span><a href="forgetpassword.php">forgot password?</a></span>
                         </div>

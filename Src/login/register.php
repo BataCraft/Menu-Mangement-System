@@ -9,8 +9,8 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
-    $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
+    $password =sha1($_POST['password']) ;
+    $cpassword = sha1($_POST['cpassword']) ;
     // $message = '';
 
     $check = "SELECT * FROM user WHERE uemail = '$email'";

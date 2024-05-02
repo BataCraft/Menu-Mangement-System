@@ -2,7 +2,7 @@
 include '../../connection.php';
     
 
-$sql = "SELECT fname, uphone, uemail, address FROM user";
+$sql = "SELECT uid, fname, uphone, uemail, address FROM user";
 
 $data = mysqli_query($conn, $sql) or die ("Queary Failed");
     // $row = mysqli_fetch_assoc($data);
@@ -54,22 +54,36 @@ $data = mysqli_query($conn, $sql) or die ("Queary Failed");
     <?php 
     echo "<table>";
     echo "<tr>
+    <th>User ID</th>
     <th>Name</th>
     <th>Phone</th>
     <th>Email</th>
     <th>Address</th>
+    <th>Remove user</th>
     </tr>";
 
-    while($row = mysqli_fetch_assoc($data)){
+    // while($row = mysqli_fetch_assoc($data)){
+    //     echo "<tr>
+    //     <td>".$row['uid']."</td>
+    //     <td>".$row['fname']."</td>
+    //     <td>".$row['uphone']."</td>
+
+    //     <td>".$row['uemail']."</td>
+
+    //     <td>".$row['address']."</td>
+    //     <td><a href='deleteuser.php?uid=' ".$row['uid'].">Remove user</a></td>
+    //     </tr>";
+
+    // }
+    while ($row = mysqli_fetch_assoc($data)) {
         echo "<tr>
-        <td>".$row['fname']."</td>
-        <td>".$row['uphone']."</td>
-
-        <td>".$row['uemail']."</td>
-
-        <td>".$row['address']."</td>
+            <td>".$row['uid']."</td>
+            <td>".$row['fname']."</td>
+            <td>".$row['uphone']."</td>
+            <td>".$row['uemail']."</td>
+            <td>".$row['address']."</td>
+            <td><a href='deleteuser.php?uid=".$row['uid']."'>Remove user</a></td>
         </tr>";
-
     }
     
     echo "</table>";

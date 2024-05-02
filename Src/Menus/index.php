@@ -1,4 +1,19 @@
 <!--  -->
+<?php
+session_start();
+
+if(!isset($_SESSION['email'])){
+    header("location: http://project.loc/Src/login/login.php");
+    exit(); // Add exit() to stop script execution after redirection
+}
+
+include '../../connection.php';
+
+$sql = "SELECT * FROM user";
+
+$result = mysqli_query($conn, $sql);
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,9 +33,15 @@
             <nav>
                 <div class="left_nav">
                     <ul>
-                        <li><a href="index.php">HOME</a></li>
+                        <li><a href="index.php" >HOME</a></li>
                         <li><a href="menu.php">MENU</a></li>
-                        <li><a href="profile.php">PROFILE</a></li>
+                        <?php
+                        // while($row = mysqli_fetch_assoc($result)){
+                        ?>
+                        <li><a href="profile.php?uid=<?php echo $row['uid']?>">PROFILE</a></li>
+                        <?php
+                    //  }
+                     ?>
                         <li><a href="orders.php">ORDERS</a></li>
                     </ul>
                 </div>
