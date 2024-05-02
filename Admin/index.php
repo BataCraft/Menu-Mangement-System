@@ -1,4 +1,3 @@
-
 <?php
 include "../Src/header.php";
 
@@ -15,6 +14,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,71 +28,71 @@ session_start();
     <!-- ======================================================= -->
     <title>Login</title>
 </head>
+
 <body>
     <div id="warpper">
         <div id="main">
 
-        
-        <div class="field_group">
-            <form action="" method="POST">
-                <h1>Login</h1>
-                <div class="fields">
-                    <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" >
-                    <span style="color: red;"><?php if(isset($err['email'])){?>
-                     <?php  echo $err['email']; ?>
-                        <?php }?>
-                
-                </span>
-                    <input type="password" placeholder="Enter Your Password" value="" name="password"  title="password">
-                    <a href="">forgot password?</a>
-                </div>
 
-               
-
-                <div>
-                    <div class="login_btn">
-                        <button type="submit" name="login">Login</button>
+            <div class="field_group">
+                <form action="" method="POST" id="loginForm">
+                    <h1>Login</h1>
+                    <div class="fields">
+                        <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" id="email">
+                        <span style="color: red;" id="error"></span>
                     </div>
-                   
-                </div>
+                    <div class="fields">
+                        <input type="password" placeholder="Enter Your Password" value="" name="password"
+                            title="password" id="password">
 
-               
-            </form>
-        </div>
+                        <span style="color: red;" id="error"> </span>
+                        <a href="">forgot password?</a>
+                    </div>
+
+
+                    <div>
+                        <div class="login_btn">
+                            <button type="submit" name="login" id="submit">Login</button>
+                        </div>
+
+                    </div>
+
+
+                </form>
+            </div>
         </div>
     </div>
+    <script src="./validation.js"></script>
 </body>
+
 </html>
 
 <?php
-  
-    if(isset($_POST['login']))
-         {
-            include "../connection.php";
 
-            $email = $_POST['email'];
-            $password = sha1($_POST['password']);
+if (isset($_POST['login'])) {
+    include "../connection.php";
 
-           $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' AND a_password = '$password' ";
+    $email = $_POST['email'];
+    $password = sha1($_POST['password']);
 
-           $querry = mysqli_query($conn, $sql) or die ('Something went Wrong!');
-           
+    $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' AND a_password = '$password' ";
 
-           if(mysqli_num_rows($querry) > 0)
-           {
-            while($row = mysqli_fetch_assoc($querry))
-            {
-                session_start();
-                $_SESSION['id'] = $row['id'];
-                $_SESSION['email'] = $row['a_email'];
-                $_SESSION['psd'] = $row['a_password'];
-                header("Location: http://project.loc/admin/pages/");
-            }
-           }
-           else{
-            echo "<script>alert('Plese Enter your Email and Password!');</script>";
-           }
- 
-         }
-    
+    $querry = mysqli_query($conn, $sql) or die('Something went Wrong!');
+
+
+    if (mysqli_num_rows($querry) > 0) {
+        while ($row = mysqli_fetch_assoc($querry)) {
+            session_start();
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['email'] = $row['a_email'];
+            $_SESSION['psd'] = $row['a_password'];
+            header("Location: http://project.loc/admin/pages/");
+        }
+    } else {
+        echo "<script>alert('Plese Enter your Email and Password!');</script>";
+    }
+
+}
+
 ?>
+
