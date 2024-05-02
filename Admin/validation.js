@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let form = document.getElementById('loginForm');
     let emailInput = document.getElementById('email');
     let passwordInput = document.getElementById('password');
-    let submitButton = document.getElementById("submit");
+    let submitButton = document.getElementById("login");
 
     form.addEventListener("submit", function (event) {
         // Prevent the form from submitting by default

@@ -3,6 +3,7 @@
 session_start();
 
 if(!isset($_SESSION['email'])){
+    echo "<script>alert('The new Admin has been created successfully!');</script>";
     header("location: http://project.loc/Src/login/login.php");
     exit(); // Add exit() to stop script execution after redirection
 }

@@ -1,7 +1,7 @@
 <?php
 include "../Src/header.php";
 
-session_start();
+// session_start();
 
 // if(!isset($_SESSION['email']) )
 // {
@@ -42,8 +42,7 @@ session_start();
                         <span style="color: red;" id="error"></span>
                     </div>
                     <div class="fields">
-                        <input type="password" placeholder="Enter Your Password" value="" name="password"
-                            title="password" id="password">
+                        <input type="password" placeholder="Enter Your Password" value="" name="password" title="password" id="password">
 
                         <span style="color: red;" id="error"> </span>
                         <a href="">forgot password?</a>
@@ -52,7 +51,7 @@ session_start();
 
                     <div>
                         <div class="login_btn">
-                            <button type="submit" name="login" id="submit">Login</button>
+                            <button type="submit" name="login" id="login">Login</button>
                         </div>
 
                     </div>
@@ -91,8 +90,6 @@ if (isset($_POST['login'])) {
     } else {
         echo "<script>alert('Plese Enter your Email and Password!');</script>";
     }
-
 }
 
 ?>
-
