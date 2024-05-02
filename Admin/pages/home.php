@@ -1,7 +1,12 @@
 <?php
 include '../../connection.php';
 
+session_start();
 
+if(!isset($_SESSION['id'])) {
+    header("Location: http://project.loc/admin/pages/");
+    exit(); // Ensure that no further code is executed after redirection
+}
 ?>
 
 
@@ -27,15 +32,17 @@ include '../../connection.php';
 
 <body>
     <div id="warpper">
+        
         <?php
-        $sql = "SELECT * FROM admin";
-        $query = mysqli_query($conn, $sql);
-        while ($row = mysqli_fetch_assoc($query)) {
-
+        // $sql = "SELECT * FROM admin";
+        // $query = mysqli_query($conn, $sql);
+        // while ($row = mysqli_fetch_assoc($query)) {
             
-        }
+            
+        // }
 
         ?>
+        
 
         <div class="container">
 
@@ -76,12 +83,16 @@ include '../../connection.php';
             </div>
 
 
-
-
-
-
+            
+            
+            
         </div>
+        
+        <div id="header">
 
+<button type="submit" name="login" id="logout_btn">
+    <a href="logout.php" id="logout_link">Log Out</a></button>
+</div>
     </div>
 
     <!-- <script>
@@ -102,3 +113,4 @@ include '../../connection.php';
 </body>
 
 </html>
+

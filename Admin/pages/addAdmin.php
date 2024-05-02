@@ -68,15 +68,16 @@ if (isset($_POST['submit'])) {
    echo $f_name = $_POST['fullname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
-    $password = $_POST['password'];
-    $cpsd = $_POST['cpassword'];
+    $password = sha1($_POST['password']);
+    $cpsd = sha1($_POST['cpassword']) ;
 
     $sql = "INSERT INTO admin (a_name, a_email, a_phone, a_password, a_cpassword) VALUES ('$f_name', '$email', '$phone', '$password', '$cpsd')";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {
         echo "<script>alert('The new Admin has been created successfully!');</script>";
-        echo "<script>window.open('../index.php', '_self')</script>";
+        // echo "<script>window.open('../index.php', '_self')</script>";
+        header("Location: http://project.loc/admin/pages/alladminpage.php");
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }

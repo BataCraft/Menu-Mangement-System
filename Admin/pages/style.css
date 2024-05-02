@@ -30,7 +30,9 @@ body {
     height: 100vh;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    /* gap: 20rem; */
 }
 
 .container {
@@ -44,7 +46,7 @@ body {
 }
 
 .card {
-    width: 30rem;
+    width: 35rem;
     height: 10rem;
     background-color: #eccacb;
     display: flex;
@@ -90,4 +92,25 @@ body {
 
 .box i{
     color: #ececec;
+}
+
+#logout_btn{
+    
+    background-color: #094913;
+    padding: 1rem 4rem ;
+    
+    border-radius: var(--large-button-radius);
+   
+}
+
+#logout_link{
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--text);
+    
+}
+
+#header{
+    align-self: flex-end; 
+    padding-right: 132px;  
 }

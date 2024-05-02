@@ -1,10 +1,18 @@
 
 <?php
 include "../Src/header.php";
-include "../connection.php";
 
+session_start();
+
+// if(!isset($_SESSION['email']) )
+// {
+//     header("Location: http://project.loc/admin/pages/");
+
+// }
 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,8 +37,13 @@ include "../connection.php";
             <form action="" method="POST">
                 <h1>Login</h1>
                 <div class="fields">
-                    <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" required>
-                    <input type="password" placeholder="Enter Your Password" value="" name="password" required title="password">
+                    <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" >
+                    <span style="color: red;"><?php if(isset($err['email'])){?>
+                     <?php  echo $err['email']; ?>
+                        <?php }?>
+                
+                </span>
+                    <input type="password" placeholder="Enter Your Password" value="" name="password"  title="password">
                     <a href="">forgot password?</a>
                 </div>
 
@@ -38,7 +51,7 @@ include "../connection.php";
 
                 <div>
                     <div class="login_btn">
-                        <button type="submit" name="submit">Login</button>
+                        <button type="submit" name="login">Login</button>
                     </div>
                    
                 </div>
@@ -52,13 +65,34 @@ include "../connection.php";
 </html>
 
 <?php
-// if(isset("submit")){
-//     $email = mysqli_real_escape_string($conn, $_POST['email']);
-//     $password = $_POST['password'];
+  
+    if(isset($_POST['login']))
+         {
+            include "../connection.php";
 
+            $email = $_POST['email'];
+            $password = sha1($_POST['password']);
 
-//     // $sql = "SELECT ";
-// }
+           $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' AND a_password = '$password' ";
 
+           $querry = mysqli_query($conn, $sql) or die ('Something went Wrong!');
+           
 
+           if(mysqli_num_rows($querry) > 0)
+           {
+            while($row = mysqli_fetch_assoc($querry))
+            {
+                session_start();
+                $_SESSION['id'] = $row['id'];
+                $_SESSION['email'] = $row['a_email'];
+                $_SESSION['psd'] = $row['a_password'];
+                header("Location: http://project.loc/admin/pages/");
+            }
+           }
+           else{
+            echo "<script>alert('Plese Enter your Email and Password!');</script>";
+           }
+ 
+         }
+    
 ?>
