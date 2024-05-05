@@ -61,7 +61,7 @@ include "../Src/header.php";
             </div>
         </div>
     </div>
-    <!-- <script src="./validation.js"></script> -->
+    <script src="./validation.js"></script>
 </body>
 
 </html>
@@ -82,13 +82,13 @@ if (isset($_POST['login'])) {
 
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  /*  if (mysqli_num_rows($query) > 0) {
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
         // checking password
         if ($row["a_password"] == $password) {
             // if password is correct Redirect to admin page
-            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/");
+            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/adminnav.php");
             exit(); // Exit to prevent further execution
         } else {
             // pasword is incorrect 
@@ -103,20 +103,19 @@ if (isset($_POST['login'])) {
         header("Location: http://localhost/Menu-Mangement-System/Admin/");
         exit(); // Exit to prevent further execution
     }
-    */
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    if (mysqli_num_rows($querry) > 0) {
+    
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+    if (mysqli_num_rows($query) > 0) {
         while ($row = mysqli_fetch_assoc($query)) {
             session_start();
             $_SESSION['id'] = $row['id'];
             $_SESSION['email'] = $row['a_email'];
             $_SESSION['psd'] = $row['a_password'];
-            header("Location: http://project.loc/admin/pages/");
+            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/adminnav.php");
         }
     } else {
         echo "<script>alert('Plese Enter your Email and Password!');</script>";
-    }
+    }*/
 }
-
 ?>
