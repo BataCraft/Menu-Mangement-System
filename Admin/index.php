@@ -72,24 +72,54 @@ if (isset($_POST['login'])) {
     include "../connection.php";
 
     $email = $_POST['email'];
-    $password = sha1($_POST['password']);
+    $password = $_POST['password'];
 
-    $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' AND a_password = '$password' ";
+    $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' ";
 
-    $querry = mysqli_query($conn, $sql) or die('Something went Wrong!');
+    $query = mysqli_query($conn, $sql) or die('Something went Wrong!');
+
+    // if the querry is empty then it means there no data associated with user inputted email 
+    include "../connection.php";
 
 
-    if (mysqli_num_rows($querry) > 0) {
-        while ($row = mysqli_fetch_assoc($querry)) {
-            session_start();
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['email'] = $row['a_email'];
-            $_SESSION['psd'] = $row['a_password'];
-            header("Location: http://project.loc/admin/pages/");
+    $sql = "SELECT id, a_email, a_password FROM admin WHERE a_email = '$email'";
+
+    $query = mysqli_query($conn, $sql) or die("Someting went wrong");
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if (mysqli_num_rows($query) > 0) {
+        $row = mysqli_fetch_assoc($query);
+        // checking password
+        if ($row["a_password"] == $password) {
+            // if password is correct Redirect to admin page
+            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/");
+            exit(); // Exit to prevent further execution
+        } else {
+            // pasword is incorrect 
+            echo "Password is incorrect";
+            // Redirect to login page if password is incorrect
+            header("Location: http://localhost/Menu-Mangement-System/Admin/");
+            exit(); // Exit to prevent further execution
         }
     } else {
-        echo "<script>alert('Plese Enter your Email and Password!');</script>";
+        echo "Email not found";
+        // Redirect to login page if email is not found
+        header("Location: http://localhost/Menu-Mangement-System/Admin/");
+        exit(); // Exit to prevent further execution
     }
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // if (mysqli_num_rows($querry) > 0) {
+    //     while ($row = mysqli_fetch_assoc($querry)) {
+    //         session_start();
+    //         $_SESSION['id'] = $row['id'];
+    //         $_SESSION['email'] = $row['a_email'];
+    //         $_SESSION['psd'] = $row['a_password'];
+    //         header("Location: http://project.loc/admin/pages/");
+    //     }
+    // } else {
+    //     echo "<script>alert('Plese Enter your Email and Password!');</script>";
+    // }
 }
 
 ?>
