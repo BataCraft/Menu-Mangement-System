@@ -35,14 +35,16 @@ include "../Src/header.php";
 
 
             <div class="field_group">
-                <form action="" method="POST" id="loginForm" name="login" onsubmit="return validateform()">
+                <form action="" method="POST" id="loginForm">
                     <h1>Login</h1>
                     <div class="fields">
-                        <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" id="email">
+                        <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email"
+                            id="email">
                         <span style="color: red;" id="error"></span>
                     </div>
                     <div class="fields">
-                        <input type="password" placeholder="Enter Your Password" value="" name="password" title="password" id="password">
+                        <input type="password" placeholder="Enter Your Password" value="" name="password"
+                            title="password" id="password">
 
                         <span style="color: red;" id="error"> </span>
                         <a href="../Admin/pages/forgotpsd.php">forgot password?</a>
@@ -95,28 +97,52 @@ if (isset($_POST['login'])) {
     include "../connection.php";
 
     $email = $_POST['email'];
-    // $password = $_POST['password'];
     $password = sha1($_POST['password']);
 
     $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' AND a_password = '$password' ";
 
-    
     $querry = mysqli_query($conn, $sql) or die('Something went Wrong!');
-    // echo $querry;
 
 
-    if (mysqli_num_rows($querry) > 0) {
-        while ($row = mysqli_fetch_assoc($querry)) {
+
+
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if (mysqli_num_rows($query) > 0) {
+        $row = mysqli_fetch_assoc($query);
+        // checking password
+        if ($row["a_password"] == $password) {
+            
+            // if password is correct Redirect to admin page
+            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/adminnav.php");
+            exit(); // Exit to prevent further execution
+        } else {
+            // pasword is incorrect 
+            echo "Password is incorrect";
+            // Redirect to login page if password is incorrect
+            header("Location: http://localhost/Menu-Mangement-System/Admin/");
+            exit(); // Exit to prevent further execution
+        }
+    } else {
+
+        echo "Email not found";
+        // Redirect to login page if email is not found
+        header("Location: http://localhost/Menu-Mangement-System/Admin/");
+        exit(); // Exit to prevent further execution
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/*
+    if (mysqli_num_rows($query) > 0) {
+        while ($row = mysqli_fetch_assoc($query)) {
             session_start();
             $_SESSION['id'] = $row['id'];
             $_SESSION['email'] = $row['a_email'];
             $_SESSION['psd'] = $row['a_password'];
-            header("Location: http://project.loc/admin/pages/");
+            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/adminnav.php");
         }
-    } 
-    // else {
-    //     echo "<script>alert('Plese Enter your Email and Password!');</script>";
-    // }
+    } else {
+        echo "<script>alert('Plese Enter your Email and Password!');</script>";
+    }
 }
-
 ?>

@@ -1,15 +1,23 @@
-function validateform()
-{
-    var error = 0;
 
-    var email = document.login.email.value;
-    var password = document.login.password.value;
-    var emailpattern = /^([a-zA-z0-9_\.\-])+@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    let form = document.loginForm;
+    let email = form.email;
+    let password = form.password;
 
-    var msd = '';
+    form.addEventListener("submit", function (e) {
 
-    if(email.trim() == ''){
-        document.getElementById('error').innerHTML = "Enter emial!";
-        error++;
-    }
-}
+        // Validate email
+        if (email.value.trim() === "") {
+            email.nextElementSibling.innerText = 'Please enter your email.';
+            e.preventDefault();
+        }
+
+        // Validate password
+        if (password.value.trim() === "") {
+            password.nextElementSibling.innerText = 'Please enter your password.';
+            e.preventDefault();
+
+        }
+
+    });
+
+

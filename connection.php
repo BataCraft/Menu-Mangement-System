@@ -1,7 +1,7 @@
 <?php 
 $host = 'localhost';
 $user = 'root';
-$password = '!23$567890';
+$password = '';//!23$567890
 $db_name = 'menu_mgnt';
 
 
