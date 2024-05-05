@@ -61,7 +61,7 @@ include "../Src/header.php";
             </div>
         </div>
     </div>
-    <script src="./validation.js"></script>
+    <!-- <script src="./validation.js"></script> -->
 </body>
 
 </html>
@@ -87,7 +87,7 @@ if (isset($_POST['login'])) {
     $query = mysqli_query($conn, $sql) or die("Someting went wrong");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    if (mysqli_num_rows($query) > 0) {
+  /*  if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
         // checking password
         if ($row["a_password"] == $password) {
@@ -107,19 +107,20 @@ if (isset($_POST['login'])) {
         header("Location: http://localhost/Menu-Mangement-System/Admin/");
         exit(); // Exit to prevent further execution
     }
+    */
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    // if (mysqli_num_rows($querry) > 0) {
-    //     while ($row = mysqli_fetch_assoc($querry)) {
-    //         session_start();
-    //         $_SESSION['id'] = $row['id'];
-    //         $_SESSION['email'] = $row['a_email'];
-    //         $_SESSION['psd'] = $row['a_password'];
-    //         header("Location: http://project.loc/admin/pages/");
-    //     }
-    // } else {
-    //     echo "<script>alert('Plese Enter your Email and Password!');</script>";
-    // }
+    if (mysqli_num_rows($querry) > 0) {
+        while ($row = mysqli_fetch_assoc($querry)) {
+            session_start();
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['email'] = $row['a_email'];
+            $_SESSION['psd'] = $row['a_password'];
+            header("Location: http://project.loc/admin/pages/");
+        }
+    } else {
+        echo "<script>alert('Plese Enter your Email and Password!');</script>";
+    }
 }
 
 ?>
