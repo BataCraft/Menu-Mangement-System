@@ -78,13 +78,9 @@ if (isset($_POST['login'])) {
 
     $query = mysqli_query($conn, $sql) or die('Something went Wrong!');
 
-    // if the querry is empty then it means there no data associated with user inputted email 
-    include "../connection.php";
 
 
-    $sql = "SELECT id, a_email, a_password FROM admin WHERE a_email = '$email'";
 
-    $query = mysqli_query($conn, $sql) or die("Someting went wrong");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   /*  if (mysqli_num_rows($query) > 0) {
@@ -111,7 +107,7 @@ if (isset($_POST['login'])) {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     if (mysqli_num_rows($querry) > 0) {
-        while ($row = mysqli_fetch_assoc($querry)) {
+        while ($row = mysqli_fetch_assoc($query)) {
             session_start();
             $_SESSION['id'] = $row['id'];
             $_SESSION['email'] = $row['a_email'];
