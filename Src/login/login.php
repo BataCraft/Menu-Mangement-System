@@ -35,12 +35,10 @@ if(isset($_POST['submit']))
 
 
 
-
-
-
-
-
 ?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -115,16 +113,7 @@ if(isset($_POST['submit']))
 
       
 
-            let Validation = () =>{
-                Login.addEventListener('click', (e)=>{
-                   if(email.value === ''){
-                    email.parentElement.innerText = ('Plese fill up email');
-                    e.preventDefault();
-                   }
-                })
-            }
-Validation();
-
+ 
 */
 
 const emailInput = document.getElementById('email');

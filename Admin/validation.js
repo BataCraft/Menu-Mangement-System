@@ -1,31 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let form = document.getElementById('loginForm');
-    let emailInput = document.getElementById('email');
-    let passwordInput = document.getElementById('password');
-    let submitButton = document.getElementById("login");
+function validateform()
+{
+    var error = 0;
 
-    form.addEventListener("submit", function (event) {
-        // Prevent the form from submitting by default
-        event.preventDefault();
+    var email = document.login.email.value;
+    var password = document.login.password.value;
+    var emailpattern = /^([a-zA-z0-9_\.\-])+@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
 
-        let email = emailInput.value.trim();
-        let password = passwordInput.value.trim();
+    var msd = '';
 
-        // Reset error messages
-        emailInput.nextElementSibling.innerText = ''; // Clear email error message
-        passwordInput.nextElementSibling.innerText = ''; // Clear password error message
-
-        if (email === "") {
-            emailInput.nextElementSibling.innerText = 'Please enter your email.';
-             // Exit the function if there's an error
-        }
-
-        if (password === "") {
-            passwordInput.nextElementSibling.innerText = 'Please enter your password.';
-            return; // Exit the function if there's an error
-        }
-
-        // If no errors, submit the form
-        form.submit();
-    });
-});
+    if(email.trim() == ''){
+        document.getElementById('error').innerHTML = "Enter emial!";
+        error++;
+    }
+}

@@ -24,13 +24,13 @@ body {
 
 }
 
-#header{
+#header {
     position: fixed;
     width: 100%;
     background-color: #FAFAFA;
 }
 
-nav{
+nav {
     /* width: 100%; */
     height: 100px;
     padding-inline: 132px;
@@ -41,13 +41,12 @@ nav{
     /* overflow: hidden; */
 }
 
-nav img{
+nav img {
     width: 200px;
     height: 100px;
 }
 
-nav .searchbar input
-{
+nav .searchbar input {
     width: 30rem;
     height: 2.5rem;
     border-radius: 10px;
@@ -56,12 +55,12 @@ nav .searchbar input
 
 }
 
-::placeholder{
+::placeholder {
     font-size: 1.2rem;
     /* text-align: center; */
 }
 
-.searchbar button{
+.searchbar button {
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
@@ -70,67 +69,88 @@ nav .searchbar input
     cursor: pointer;
 }
 
-.searchbar button i{
+.searchbar button i {
     font-size: 1.2rem;
 }
 
 
-.searchbar input[type="search"] 
-{
+.searchbar input[type="search"] {
     font-size: 1.2rem;
 }
 
-nav .profile i
-{
-   
+nav .profile i {
+
     font-size: 2rem;
     cursor: pointer;
 }
 
-.profile_detail{
+.profile_detail {
     position: absolute;
     top: 2rem;
     display: flex;
     gap: 2rem;
-    top: 100px;
+    top: 80px;
     right: 20px;
-    /* display: none; */
+    /* From https://css.glass */
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+    border: 1px solid rgba(255, 255, 255, 1);
+    padding: 2rem;
     right: -100%;
     transition: all .1s ease-in;
 }
 
-.profile_detail a{
+.profile_detail a {
     text-decoration: none;
     color: black;
-    font-size: 1.8rem;
+    font-size: 1rem;
     font-weight: 500;
     padding: 10px 20px;
     background-color: var(--primary-color);
     color: var(--text);
+    border-radius: var(--large-button-radius);
+    transition: all .6s ease-in;
 }
 
+.profile_detail a:hover {
+    background-color: transparent;
+    color: var(--bg-color);
+    border: 1px solid var(--primary-color);
+}
+
+.profile_detail a span i {
+    font-size: 1.2rem;
+}
 
 .profile_detail a:nth-of-type(2) {
     background-color: var(--secondary-color);
-  }
+}
 
+.profile_detail a:nth-of-type(2):hover {
+    background-color: transparent;
+    color: var(--bg-color);
+    border: 1px solid var(--secondary-color);
+}
 
-#main{
+#main {
     /* width: 100%; */
     padding: 132px;
 
 }
 
-#main h3{
+#main h3 {
     font-size: 2rem;
 }
-.box
-{
+
+.box {
     display: flex;
     flex-wrap: wrap;
 }
 
-.card{
+.card {
     width: 25rem;
     /* height: 30rem; */
     margin: 3.2rem auto;
@@ -140,33 +160,34 @@ nav .profile i
     transition: all .6s ease-in-out;
 }
 
-.card:hover{
+.card:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-.images img{
+.images img {
     width: 100%;
     border-radius: 10px;
 
 }
 
-.details{
+.details {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     padding: 32px;
 }
 
-.details h1{
+.details h1 {
     font-size: 3rem;
 }
 
-.details p{
+.details p {
     padding: 18px;
     font-size: 1.6rem;
     font-weight: 500;
 }
-.cart{
+
+.cart {
     background-color: var(--primary-color);
     padding: .5rem 1rem;
     color: #FAFAFA;
@@ -178,13 +199,12 @@ nav .profile i
 
 }
 
-.details span{
+.details span {
     color: darkgray;
 }
 
-section{
+section {
     padding-inline: 132px;
 
 
 }
-

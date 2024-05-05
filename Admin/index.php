@@ -35,7 +35,7 @@ include "../Src/header.php";
 
 
             <div class="field_group">
-                <form action="" method="POST" id="loginForm">
+                <form action="" method="POST" id="loginForm" name="login" onsubmit="return validateform()">
                     <h1>Login</h1>
                     <div class="fields">
                         <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" id="email">
@@ -45,13 +45,13 @@ include "../Src/header.php";
                         <input type="password" placeholder="Enter Your Password" value="" name="password" title="password" id="password">
 
                         <span style="color: red;" id="error"> </span>
-                        <a href="">forgot password?</a>
+                        <a href="../Admin/pages/forgotpsd.php">forgot password?</a>
                     </div>
 
 
                     <div>
                         <div class="login_btn">
-                            <button type="submit" name="login" id="login">Login</button>
+                            <button type="submit" name="login" id="login" >Login</button>
                         </div>
 
                     </div>
@@ -61,7 +61,30 @@ include "../Src/header.php";
             </div>
         </div>
     </div>
-    <script src="./validation.js"></script>
+
+    <script>
+    function validateForm() {
+      var emailInput = document.getElementById("email");
+      var passwordInput = document.getElementById("password");
+
+      document.getElementById("error").innerHTML = "";
+
+      if (emailInput.value.trim() === "") {
+        document.getElementById("error").innerHTML = "Please enter your email address.";
+        emailInput.focus();
+        return false;
+      }
+
+      if (passwordInput.value.trim() === "") {
+        document.getElementById("error").innerHTML = "Please enter your password.";
+        passwordInput.focus();
+        return false;
+      }
+
+      return true;
+    }
+  </script>
+
 </body>
 
 </html>
@@ -72,11 +95,14 @@ if (isset($_POST['login'])) {
     include "../connection.php";
 
     $email = $_POST['email'];
+    // $password = $_POST['password'];
     $password = sha1($_POST['password']);
 
     $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' AND a_password = '$password' ";
 
+    
     $querry = mysqli_query($conn, $sql) or die('Something went Wrong!');
+    // echo $querry;
 
 
     if (mysqli_num_rows($querry) > 0) {
@@ -87,9 +113,10 @@ if (isset($_POST['login'])) {
             $_SESSION['psd'] = $row['a_password'];
             header("Location: http://project.loc/admin/pages/");
         }
-    } else {
-        echo "<script>alert('Plese Enter your Email and Password!');</script>";
-    }
+    } 
+    // else {
+    //     echo "<script>alert('Plese Enter your Email and Password!');</script>";
+    // }
 }
 
 ?>

@@ -47,8 +47,8 @@ $result = mysqli_query($conn, $sql);
                     <i class="ri-user-line" id="profile_icon"></i>
 
                     <div class="profile_detail" id="pd">
-                        <a href="">Profile</a>
-                        <a href="../Menus/logout.php">Logout</a>
+                        <a href="">Profile Edit <span><i class="ri-edit-line"></i></span></a>
+                        <a href="../Menus/logout.php">Logout <span><i class="ri-logout-box-line"></i></span></a>
                     </div>
                 </div>
             </nav>
