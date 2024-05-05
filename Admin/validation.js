@@ -1,31 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let form = document.getElementById('loginForm');
-    let emailInput = document.getElementById('email');
-    let passwordInput = document.getElementById('password');
-    let submitButton = document.getElementById("login");
+    let form = document.loginForm;
+    let email = form.email;
+    let password = form.password;
 
-    form.addEventListener("submit", function (event) {
-        // Prevent the form from submitting by default
-        event.preventDefault();
+    form.addEventListener("submit", function (e) {
 
-        let email = emailInput.value.trim();
-        let password = passwordInput.value.trim();
-
-        // Reset error messages
-        emailInput.nextElementSibling.innerText = ''; // Clear email error message
-        passwordInput.nextElementSibling.innerText = ''; // Clear password error message
-
-        if (email === "") {
-            emailInput.nextElementSibling.innerText = 'Please enter your email.';
-             // Exit the function if there's an error
+        // Validate email
+        if (email.value.trim() === "") {
+            email.nextElementSibling.innerText = 'Please enter your email.';
+            e.preventDefault();
         }
 
-        if (password === "") {
-            passwordInput.nextElementSibling.innerText = 'Please enter your password.';
-            return; // Exit the function if there's an error
+        // Validate password
+        if (password.value.trim() === "") {
+            password.nextElementSibling.innerText = 'Please enter your password.';
+            e.preventDefault();
+
         }
 
-        // If no errors, submit the form
-        form.submit();
     });
-});
+

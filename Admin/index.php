@@ -35,14 +35,16 @@ include "../Src/header.php";
 
 
             <div class="field_group">
-                <form action="" method="POST" id="loginForm">
+                <form action="" method="POST" name="loginForm">
                     <h1>Login</h1>
                     <div class="fields">
-                        <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email" id="email">
+                        <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email"
+                            id="email">
                         <span style="color: red;" id="error"></span>
                     </div>
                     <div class="fields">
-                        <input type="password" placeholder="Enter Your Password" value="" name="password" title="password" id="password">
+                        <input type="password" placeholder="Enter Your Password" value="" name="password"
+                            title="password" id="password">
 
                         <span style="color: red;" id="error"> </span>
                         <a href="">forgot password?</a>
@@ -82,11 +84,12 @@ if (isset($_POST['login'])) {
 
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   if (mysqli_num_rows($query) > 0) {
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
         // checking password
         if ($row["a_password"] == $password) {
+            
             // if password is correct Redirect to admin page
             header("Location: http://localhost/Menu-Mangement-System/Admin/pages/adminnav.php");
             exit(); // Exit to prevent further execution
@@ -98,13 +101,14 @@ if (isset($_POST['login'])) {
             exit(); // Exit to prevent further execution
         }
     } else {
+
         echo "Email not found";
         // Redirect to login page if email is not found
         header("Location: http://localhost/Menu-Mangement-System/Admin/");
         exit(); // Exit to prevent further execution
     }
-    
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /*
     if (mysqli_num_rows($query) > 0) {
         while ($row = mysqli_fetch_assoc($query)) {
