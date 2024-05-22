@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) {
     include '../../connection.php';
 
 
-   echo $f_name = $_POST['fullname'];
+   $f_name = $_POST['fullname'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $password = sha1($_POST['password']);

@@ -33,10 +33,13 @@ if(!isset($_SESSION['id'])) {
 <body>
     <div id="warpper">
         
+
         <?php
-        // $sql = "SELECT * FROM admin";
-        // $query = mysqli_query($conn, $sql);
-        // while ($row = mysqli_fetch_assoc($query)) {
+        $id = $_SESSION['id'];
+
+        $sql = "SELECT * FROM admin WHERE id = $id ";
+        $query = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($query)) {
             
             
         // }
@@ -47,9 +50,10 @@ if(!isset($_SESSION['id'])) {
 
         <div class="adminwelcome" style="align-self: flex-start; padding-inline: 400px;">
             <h1 style="font-size: 3rem;">Welcome dear!</h1>
-            <h3 style="font-size: 2rem;"><?php  echo $_SESSION['admin_name'];  ?> 😊</h3>
+            <h3 style="font-size: 2rem;"><?php  echo  $row['a_name'];  ?> 😊</h3>
         </div>
         
+       
 
         <div class="container">
 
@@ -84,13 +88,13 @@ if(!isset($_SESSION['id'])) {
                 <a href="../pages/settings.php">
                     <div class="box">
                         <i class="ri-equalizer-line"></i>
-                        <h3>Edit Profile</h3>
+                        <h3><a href="./settings.php?id=<?php echo $row['id']?>">Edit Profile</a></h3>
                     </div>
                 </a>
             </div>
 
 
-            
+            <?php }?>
             
             
         </div>

@@ -33,7 +33,7 @@ $result = mysqli_query($conn, $sql);
     <div id="Warpper">
         <div id="main">
             <div class="container">
-                <form id="user_register" onsubmit="return validateForm()" action="#" method="POST">
+                <form id="user_register" onsubmit="return validateForm()" action="./finalupdate.php" method="POST">
                     <h1>Update User Profile</h1>
 
                         <?php 
@@ -47,6 +47,8 @@ $result = mysqli_query($conn, $sql);
 
 
                     <section>
+                        <input type="hidden" name="uid" value="<?php echo $row['uid']; ?>">
+
                         <!-- User Full Name -->
                         <div class="fields">
                             <label for="fname">Full Name <span style="color: red;">*</span></label>
@@ -76,20 +78,7 @@ $result = mysqli_query($conn, $sql);
                             <span class="error" id="addressError"></span>
                         </div>
 
-                        <!-- User password -->
-                        <div class="fields">
-                            <label for="password">Password <span style="color: red;">*</span></label>
-                            <input type="password" name="password" id="password" placeholder="Enter Your Password" value="">
-                            <span class="error" id="passwordError"></span>
-                        </div>
-
-                        <!-- USer Confirm Password -->
-                        <div class="fields">
-                            <label for="cpassword">Confirm Password <span style="color: red;">*</span></label>
-                            <input type="password" name="cpassword" id="cpassword" placeholder="Confirm Password" value="">
-                            <span class="error" id="cpasswordError"></span>
-                        </div>
-
+                        
 
                         <?php
                      }
@@ -107,7 +96,7 @@ $result = mysqli_query($conn, $sql);
         </div>
     </div>
 
-    <script>
+    <!-- <script>
         function validateForm() {
             let isValid = true;
             const fnameInput = document.getElementById("fname");
@@ -169,7 +158,8 @@ $result = mysqli_query($conn, $sql);
 
             return isValid;
         }
-    </script>
+    </script> -->
 </body>
 
 </html>
+

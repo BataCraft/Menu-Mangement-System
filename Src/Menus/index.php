@@ -33,6 +33,10 @@ $result = mysqli_query($conn, $sql);
 <body>
     <div id="Warpper">
         <div id="header">
+            <?php
+            // include './navbar.php';
+            
+            ?>
             <nav>
                 <div class="logo">
                     <img src="../Menus/a-sleek-and-sophisticated-logo-for-a-menu-manageme-9JRvYmr9S3-dBqWmU6Is6A-gRyYqVQtR8uOxJHKXV0XJQ.jpeg">
@@ -54,6 +58,7 @@ $result = mysqli_query($conn, $sql);
                     </div>
                 </div>
             </nav>
+            
         </div>
 
         <div id="main">
