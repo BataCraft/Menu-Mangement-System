@@ -7,7 +7,9 @@ if(isset($_POST['submit']))
    $email = $_POST['email'];
     $password = sha1($_POST['password']);
 
-    $sql = "SELECT uid, uemail, password FROM user WHERE uemail = '$email' AND password = '$password' " ;
+    $sql = "SELECT uid, fname, uphone, uemail, password FROM user WHERE uemail = '$email' AND password = '$password' " ;
+
+
 
     $result = mysqli_query($conn, $sql) or die ("Something worng!");
 
@@ -16,8 +18,10 @@ if(isset($_POST['submit']))
         while($row = mysqli_fetch_assoc($result)){
             session_start();
             $_SESSION['id'] = $row['uid'];
+            $_SESSION['fname'] = $row['fname'];
             $_SESSION['email'] = $row['uemail'];
             $_SESSION['psd'] = $row['password'];
+            $_SESSION['phone'] = $row['uphone'];
 
             header("location: http://project.loc/Src/Menus/");
             exit();

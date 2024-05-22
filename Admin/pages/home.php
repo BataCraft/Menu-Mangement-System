@@ -41,7 +41,14 @@ if(!isset($_SESSION['id'])) {
             
         // }
 
+       
+
         ?>
+
+        <div class="adminwelcome" style="align-self: flex-start; padding-inline: 400px;">
+            <h1 style="font-size: 3rem;">Welcome dear!</h1>
+            <h3 style="font-size: 2rem;"><?php  echo $_SESSION['admin_name'];  ?> 😊</h3>
+        </div>
         
 
         <div class="container">
@@ -74,7 +81,7 @@ if(!isset($_SESSION['id'])) {
             </div>
 
             <div class="card">
-                <a href="../pages/settings.php?id=<?php echo $row['id'] ?> ">
+                <a href="../pages/settings.php">
                     <div class="box">
                         <i class="ri-equalizer-line"></i>
                         <h3>Edit Profile</h3>

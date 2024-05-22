@@ -23,6 +23,8 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menus</title>
+
+
     <!-- icon CDN -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="../Menus/style.css">
@@ -47,7 +49,7 @@ $result = mysqli_query($conn, $sql);
                     <i class="ri-user-line" id="profile_icon"></i>
 
                     <div class="profile_detail" id="pd">
-                        <a href="">Profile Edit <span><i class="ri-edit-line"></i></span></a>
+                        <a href="./profile.php">Profile Edit <span><i class="ri-edit-line"></i></span></a>
                         <a href="../Menus/logout.php">Logout <span><i class="ri-logout-box-line"></i></span></a>
                     </div>
                 </div>

@@ -35,7 +35,7 @@ include "../Src/header.php";
 
 
             <div class="field_group">
-                <form action="" method="POST" id="loginForm">
+                <form action="" method="POST" name="loginForm">
                     <h1>Login</h1>
                     <div class="fields">
                         <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email"
@@ -64,28 +64,9 @@ include "../Src/header.php";
         </div>
     </div>
 
-    <script>
-    function validateForm() {
-      var emailInput = document.getElementById("email");
-      var passwordInput = document.getElementById("password");
 
-      document.getElementById("error").innerHTML = "";
 
-      if (emailInput.value.trim() === "") {
-        document.getElementById("error").innerHTML = "Please enter your email address.";
-        emailInput.focus();
-        return false;
-      }
-
-      if (passwordInput.value.trim() === "") {
-        document.getElementById("error").innerHTML = "Please enter your password.";
-        passwordInput.focus();
-        return false;
-      }
-
-      return true;
-    }
-  </script>
+  <script src="../Admin/validation.js"></script>
 
 </body>
 
@@ -97,52 +78,40 @@ if (isset($_POST['login'])) {
     include "../connection.php";
 
     $email = $_POST['email'];
+    // $password = $_POST['password'];
     $password = sha1($_POST['password']);
 
-    $sql = " SELECT id, a_email, a_password FROM admin WHERE a_email = '$email' AND a_password = '$password' ";
+    $sql = " SELECT id, a_email, a_password, a_name FROM admin WHERE a_email = '$email' ";
 
-    $querry = mysqli_query($conn, $sql) or die('Something went Wrong!');
-
-
+    $query = mysqli_query($conn, $sql) or die('Something went Wrong!');
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_assoc($query);
+        session_start();
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['email'] = $row['a_email'];
+        $_SESSION['password'] = $row['a_password'];
+        $_SESSION['admin_name'] = $row['a_name'];
+
         // checking password
         if ($row["a_password"] == $password) {
-            
+
             // if password is correct Redirect to admin page
-            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/adminnav.php");
+            header("Location: http://project.loc/Admin/pages/home.php");
             exit(); // Exit to prevent further execution
         } else {
             // pasword is incorrect 
-            echo "Password is incorrect";
-            // Redirect to login page if password is incorrect
-            header("Location: http://localhost/Menu-Mangement-System/Admin/");
+            echo "<script>alert('Your Password is incorrect!');</script>";
             exit(); // Exit to prevent further execution
         }
     } else {
-
-        echo "Email not found";
+        echo "<script>alert('Email Address doesn't exits');</script>";
+        
         // Redirect to login page if email is not found
-        header("Location: http://localhost/Menu-Mangement-System/Admin/");
         exit(); // Exit to prevent further execution
-    }
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-    if (mysqli_num_rows($query) > 0) {
-        while ($row = mysqli_fetch_assoc($query)) {
-            session_start();
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['email'] = $row['a_email'];
-            $_SESSION['psd'] = $row['a_password'];
-            header("Location: http://localhost/Menu-Mangement-System/Admin/pages/adminnav.php");
-        }
-    } else {
-        echo "<script>alert('Plese Enter your Email and Password!');</script>";
     }
 }
 ?>
