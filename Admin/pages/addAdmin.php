@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
     if ($result) {
         echo "<script>alert('The new Admin has been created successfully!');</script>";
         // echo "<script>window.open('../index.php', '_self')</script>";
-        header("Location: http://project.loc/admin/pages/alladminpage.php");
+        header("Location: http://project.loc/Admin/pages/alladminpage.php");
     } else {
         echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
