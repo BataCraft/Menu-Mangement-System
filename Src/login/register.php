@@ -96,7 +96,6 @@ if (isset($_POST['submit'])) {
                         <div class="fields">
                             <label for="password">Password <span style="color: red;">*</span></label>
                             <input type="password" name="password" id="password" placeholder="Enter Your Password" value="">
-                            <span class="error" id="passwordError"></span>
                         </div>
 
                         <!-- USer Confirm Password -->
@@ -106,7 +105,11 @@ if (isset($_POST['submit'])) {
                             <span class="error" id="cpasswordError"></span>
                         </div>
                     </section>
+<<<<<<< HEAD
                     
+=======
+                    <span class="error" id="passwordError"></span>
+>>>>>>> 2da575d690424ec94338337c7eec8caa6c8b2fa8
                     <!-- Submit Button -->
                     <div class="btn">
                         <button type="submit" name="submit" value="submit">Register</button>
@@ -120,7 +123,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        function validateForm() {
+        function validateForm(event) {
             let isValid = true;
             const fnameInput = document.getElementById("fname");
             const emailInput = document.getElementById("email");
@@ -138,21 +141,26 @@ if (isset($_POST['submit'])) {
             if (fnameInput.value.trim() === "") {
                 document.getElementById("fnameError").textContent = "Please enter your full name.";
                 isValid = false;
+                
+
             }
 
             // Validate email
             if (emailInput.value.trim() === "") {
                 document.getElementById("emailError").textContent = "Please enter your email address.";
                 isValid = false;
+
             } else if (!emailRegex.test(emailInput.value.trim())) {
                 document.getElementById("emailError").textContent = "Please enter a valid email address.";
                 isValid = false;
+
             }
 
             // Validate phone number (optional)
             if (phoneInput.value.trim() !== "" && isNaN(phoneInput.value.trim())) {
                 document.getElementById("phoneError").textContent = "Please enter a valid phone number.";
                 isValid = false;
+
             }
 
             // Validate address (optional)
@@ -161,8 +169,9 @@ if (isset($_POST['submit'])) {
             if (passwordInput.value.trim() === "") {
                 document.getElementById("passwordError").textContent = "Please enter your password.";
                 isValid = false;
+
             } else if (!passwordRegex.test(passwordInput.value.trim())) {
-                document.getElementById("passwordError").textContent = `Password must be at least 8 characters long <br> and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.`;
+                document.getElementById("passwordError").textContent = `Password must be at least 8 characters long  and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.`;
                 isValid = false;
             }
 
@@ -170,13 +179,16 @@ if (isset($_POST['submit'])) {
             if (cpasswordInput.value.trim() === "") {
                 document.getElementById("cpasswordError").textContent = "Please confirm your password.";
                 isValid = false;
+
             } else if (passwordInput.value.trim() !== cpasswordInput.value.trim()) {
                 document.getElementById("cpasswordError").textContent = "Passwords do not match.";
                 isValid = false;
+
             }
 
             if (!isValid) {
                 event.preventDefault();
+                
             }
 
             return isValid;
