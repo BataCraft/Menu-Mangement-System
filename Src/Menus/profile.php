@@ -75,6 +75,11 @@
             text-align: center;
         }
 
+        a:nth-child(2)
+        {
+            background-color: #f44336;
+        }
+
         a:hover {
             background-color: #45a049;
         }
@@ -115,6 +120,7 @@
                     <div style="text-align: center;">
 
                         <a href="./update.php?uid=<?php echo $_SESSION['id']; ?>">Update Profile</a>
+                        <a href="./deleteAccount.php?uid=<?php echo $_SESSION['id']; ?>">Delete Account</a>
                     </div>
                 </div>
 

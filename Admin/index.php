@@ -1,13 +1,6 @@
 <?php
 include "../Src/header.php";
 
-// session_start();
-
-// if(!isset($_SESSION['email']) )
-// {
-//     header("Location: http://project.loc/admin/pages/");
-
-// }
 
 ?>
 
@@ -37,6 +30,8 @@ include "../Src/header.php";
             <div class="field_group">
                 <form action="" method="POST" name="loginForm">
                     <h1>Login</h1>
+
+                    <div id="errorMessage" style="display: none; color: red;">Invalid username or password</div>
                     <div class="fields">
                         <input type="text" placeholder="Enter Your Email Address" value="" name="email" title="email"
                             id="email">
@@ -57,7 +52,7 @@ include "../Src/header.php";
                         </div>
 
                     </div>
-
+                    <div id="errorMessage" style="display: none; color: red;">Invalid username or password</div>
 
                 </form>
             </div>
@@ -65,6 +60,12 @@ include "../Src/header.php";
     </div>
 
 
+<script>
+      // Check if the session variable or flag is set
+  <?php if (isset($_SESSION['login_error']) && $_SESSION['login_error']) { ?>
+    document.getElementById('errorMessage').style.display = 'block';
+ <?php } ?>
+</script>
 
   <script src="../Admin/validation.js"></script>
 
@@ -96,8 +97,12 @@ if (isset($_POST['login'])) {
         $_SESSION['password'] = $row['a_password'];
         $_SESSION['admin_name'] = $row['a_name'];
 
+        if($row["a_email"] != $email) {
+            echo "<script>alert('Your Password is incorrect!');</script>";
+            exit();
+        }
         // checking password
-        if ($row["a_password"] == $password) {
+       elseif ($row["a_password"] == $password) {
 
             // if password is correct Redirect to admin page
             header("Location: http://project.loc/Admin/pages/home.php");
@@ -108,10 +113,7 @@ if (isset($_POST['login'])) {
             exit(); // Exit to prevent further execution
         }
     } else {
-        echo "<script>alert('Email Address doesn't exits');</script>";
-        
-        // Redirect to login page if email is not found
-        exit(); // Exit to prevent further execution
+        $_SESSION['errorMsg'] = true;
     }
 }
 ?>

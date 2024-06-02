@@ -135,76 +135,93 @@ nav .profile i {
     border: 1px solid var(--secondary-color);
 }
 
-#main {
+.main {
     /* width: 100%; */
     padding: 132px;
 
 }
 
-#main h3 {
+.main h3 {
     font-size: 2rem;
 }
 
 .box {
     display: flex;
     flex-wrap: wrap;
+    /* gap: 32px; */
 }
 
+    /* .box {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min-content, max-content));
+      } */
+
+  .card{
+    flex: 1 0 25rem;
+ 
+  }
+
 .card {
-    width: 25rem;
+    /* width: 25rem; */
     /* height: 30rem; */
     margin: 3.2rem auto;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     padding: 20px;
     border-radius: 10px;
     transition: all .6s ease-in-out;
+    cursor: pointer;
 }
 
 .card:hover {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-.images img {
+.top img{
     width: 100%;
-    border-radius: 10px;
+    border-radius: 20px;
+}
+
+
+.detail h4{
+    font-size: 2rem;
 
 }
 
-.details {
+.detail p{
+    font-size: 1.5rem;
+}
+
+span{
+    font-weight: 600;
+    color: #666464;
+}
+
+.bottom{
     display: flex;
-    align-items: flex-end;
+    /* align-items: center; */
     justify-content: space-between;
-    padding: 32px;
+    flex-direction: row;
+    padding-top: 18px; 
 }
-
-.details h1 {
-    font-size: 3rem;
-}
-
-.details p {
-    padding: 18px;
-    font-size: 1.6rem;
-    font-weight: 500;
-}
-
-.cart {
-    background-color: var(--primary-color);
-    padding: .5rem 1rem;
-    color: #FAFAFA;
-    display: flex;
-    gap: 8px;
-    align-items: center;
+.cart button{
+    
+    background-color: #129226;
+    padding: .6rem 1.2rem;
     border-radius: 10px;
-    cursor: pointer;
-
+    transition: all ease-in .3s;
+    
 }
 
-.details span {
-    color: darkgray;
+.cart button:hover{
+    background-color: #0D6D1C;
 }
 
-section {
-    padding-inline: 132px;
+.cart a{
+    font-size: 1.2rem;
+    text-decoration: none;
+    color: #FAFAFA;
+}
 
-
+.cart a span{
+    color: #FAFAFA;
 }

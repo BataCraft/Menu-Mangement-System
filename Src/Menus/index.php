@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $sql);
         <div id="header">
             <?php
             // include './navbar.php';
-            
+
             ?>
             <nav>
                 <div class="logo">
@@ -58,129 +58,134 @@ $result = mysqli_query($conn, $sql);
                     </div>
                 </div>
             </nav>
-            
+
         </div>
 
-        <div id="main">
-            <h3>Today Special</h3>
+        <div class="main">
+            <h3>Aptizzer</h3>
 
             <div class="box">
 
+                <?php
 
-                <div class="card">
-                    <div class="images">
-                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                    </div>
+                $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Appetizer' OR  item_category = 'appetizers'";
 
-                    <div class="details">
-                        <div class="name_price">
 
-                            <h2>Samosa</h2>
-                            <p>Rs <span>100</span></p>
+                $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed");
+
+                // print_r($aptizer_data);
+
+                if (mysqli_num_rows($aptizer_data) > 0) {
+                    while ($row = mysqli_fetch_assoc($aptizer_data)) {
+
+
+
+
+
+                ?>
+
+
+
+
+
+                        <div class="card">
+                            <div class="top">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+                            </div>
+
+                            <div class="bottom">
+                                <div class="detail">
+                                    <h4><?php echo  $row['item_name']; ?></h4>
+
+                                    <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
+
+                                </div>
+
+                                <div class="cart">
+                                    <button>
+                                        <a href=""> <i class="ri-shopping-cart-2-line"></i>
+                                            <span>Add to cart</span></a>
+
+                                    </button>
+                                </div>
+
+                            </div>
                         </div>
 
-                        <div class="cart">
-                            <i class="ri-shopping-cart-line"></i>
-                            <add_cart>Add Cart</add_cart>
-                        </div>
 
-                    </div>
-                </div>
 
-                <div class="card">
-                    <div class="images">
-                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                    </div>
 
-                    <div class="details">
-                        <div class="name_price">
+                <?php
+                    }
+                } else {
+                    echo "No Data Found";
+                }
 
-                            <h2>Samosa</h2>
-                            <p>Rs: <span>100</span></p>
-                        </div>
-
-                        <div class="cart">
-                            <i class="ri-shopping-cart-line"></i>
-                            <span>Add Cart</span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="images">
-                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                    </div>
-
-                    <div class="details">
-                        <div class="name_price">
-
-                            <h2>Samosa</h2>
-                            <p>Rs: <span>100</span></p>
-                        </div>
-
-                        <div class="cart">
-                            <i class="ri-shopping-cart-line"></i>
-                            <span>Add Cart</span>
-                        </div>
-
-                    </div>
-                </div>
-
-                <div class="card">
-                    <div class="images">
-                        <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                    </div>
-
-                    <div class="details">
-                        <div class="name_price">
-
-                            <h2>Samosa</h2>
-                            <p>Rs: <span>100</span></p>
-                        </div>
-
-                        <div class="cart">
-                            <i class="ri-shopping-cart-line"></i>
-                            <span>Add Cart</span>
-                        </div>
-
-                    </div>
-                </div>
-
+                ?>
             </div>
+
         </div>
 
+        <!-- --------------------------------------------------------------------------------------------------------------------------- -->
 
-        <section id="aptizer">
-            <div class="aptizer_items">
-                <h1>Aptizer</h1>
-
-
-                <div class="box">
+        <section class="main">
+            <h3>entree </h3>
 
 
-                    <div class="card">
-                        <div class="images">
-                            <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                        </div>
+            <div class="box">
 
-                        <div class="details">
-                            <div class="name_price">
+                <?php
 
-                                <h2>Samosa</h2>
-                                <p>Rs <span>100</span></p>
+                $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Entrees' OR item_category = 'entrees' ";
+
+
+                $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed");
+
+                if (mysqli_num_rows($aptizer_data) > 0) {
+                    while ($row = mysqli_fetch_assoc($aptizer_data)) {
+
+
+                ?>
+
+                        <div class="card">
+
+
+                            <div class="top">
+                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
                             </div>
 
-                            <div class="cart">
-                                <i class="ri-shopping-cart-line"></i>
-                                <add_cart>Add Cart</add_cart>
+                            <div class="bottom">
+                                <div class="detail">
+                                    <h4><?php echo  $row['item_name']; ?></h4>
+                                    <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
+
+                                </div>
+
+                                <div class="cart">
+                                    <button>
+                                        <a href=""> <i class="ri-shopping-cart-2-line"></i>
+                                            <span>Add to cart</span></a>
+
+                                    </button>
+                                </div>
                             </div>
 
+
                         </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                } else {
+                    echo "No Data Found";
+                }
+
+                ?>
+
             </div>
+
+
         </section>
+
+
 
 
     </div>

@@ -58,7 +58,7 @@ if(!isset($_SESSION['id'])) {
         <div class="container">
 
             <div class="card">
-                <a href="../pages/Menu.php">
+                <a href="../pages/menu_items.php">
                     <div class="box">
                         <i class="ri-edit-line"></i>
                         <h3>Menu Edit</h3>

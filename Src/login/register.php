@@ -13,6 +13,8 @@ if (isset($_POST['submit'])) {
     $cpassword = sha1($_POST['cpassword']) ;
     // $message = '';
 
+
+    // Checking email is already exist of not In Database...
     $check = "SELECT * FROM user WHERE uemail = '$email'";
 
     $data_check = mysqli_query($conn, $check);
@@ -24,7 +26,7 @@ if (isset($_POST['submit'])) {
     } else {
 
 
-
+        // the next step when the user enter email is while not exist in database......
         $sql = "INSERT INTO user (fname, uemail, uphone, address, password, cpassword) VALUES ('$fname', '$email', '$phone', '$address', '$password', '$cpassword') ";
 
 
@@ -75,24 +77,28 @@ if (isset($_POST['submit'])) {
                             <span class="error" id="emailError"></span>
 
                         </div>
+
                         <!-- User Phone Number -->
                         <div class="fields">
                             <label for="phone">Phone <span style="color: red;"></span></label>
                             <input type="number" name="phone" id="phone" placeholder="Enter Your Phone Number" value="">
                             <span class="error" id="phoneError"></span>
                         </div>
+
                         <!-- User Address -->
                         <div class="fields">
                             <label for="address">Address <span style="color: red;"></span></label>
                             <input type="text" name="address" id="address" placeholder="Enter Your Address" value="">
                             <span class="error" id="addressError"></span>
                         </div>
+
                         <!-- User password -->
                         <div class="fields">
                             <label for="password">Password <span style="color: red;">*</span></label>
                             <input type="password" name="password" id="password" placeholder="Enter Your Password" value="">
                             <span class="error" id="passwordError"></span>
                         </div>
+
                         <!-- USer Confirm Password -->
                         <div class="fields">
                             <label for="cpassword">Confirm Password <span style="color: red;">*</span></label>
@@ -100,6 +106,7 @@ if (isset($_POST['submit'])) {
                             <span class="error" id="cpasswordError"></span>
                         </div>
                     </section>
+                    
                     <!-- Submit Button -->
                     <div class="btn">
                         <button type="submit" name="submit" value="submit">Register</button>

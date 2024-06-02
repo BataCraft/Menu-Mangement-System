@@ -2,6 +2,8 @@
 include '../../connection.php';
 // error_reporting(E_ALL);
 
+session_start();
+
 $admin_id = $_GET['id'];
 
 $sql = "SELECT * FROM admin WHERE id = $admin_id";

@@ -5,6 +5,9 @@ session_unset();
 
 session_destroy();
 
+
+// $conn->close();
+
 header("Location: http://project.loc/");
 
 ?>
