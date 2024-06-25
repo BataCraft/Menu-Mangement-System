@@ -18,12 +18,18 @@ if (isset($_POST['submit'])) {
     $check = "SELECT * FROM user WHERE uemail = '$email'";
 
     $data_check = mysqli_query($conn, $check);
-
+//check if the email is already exits in database
     if (mysqli_num_rows($data_check) > 0) {
+        // Use PHP to echo JavaScript after DOM is loaded
         echo '<script>';
-        echo 'alert ("Email already Exits!")';
+        echo 'document.addEventListener("DOMContentLoaded", function() {';
+        echo '    if (document.getElementById("emailError")) {';
+        echo '        document.getElementById("emailError").textContent = "Email already exists";';
+        echo '    }';
+        echo '});';
         echo '</script>';
-    } else {
+    }
+     else {
 
 
         // the next step when the user enter email is while not exist in database......
@@ -73,7 +79,7 @@ if (isset($_POST['submit'])) {
                         <!-- User Email -->
                         <div class="fields">
                             <label for="email">Email <span style="color: red;">*</span></label>
-                            <input type="email" name="email" id="email" placeholder="Enter Your Email Address" value="">
+                            <input type="text" name="email" id="email" placeholder="Enter Your Email Address" value="">
                             <span class="error" id="emailError"></span>
 
                         </div>
@@ -105,11 +111,7 @@ if (isset($_POST['submit'])) {
                             <span class="error" id="cpasswordError"></span>
                         </div>
                     </section>
-<<<<<<< HEAD
                     
-=======
-                    <span class="error" id="passwordError"></span>
->>>>>>> 2da575d690424ec94338337c7eec8caa6c8b2fa8
                     <!-- Submit Button -->
                     <div class="btn">
                         <button type="submit" name="submit" value="submit">Register</button>
@@ -124,7 +126,7 @@ if (isset($_POST['submit'])) {
 
     <script>
         function validateForm(event) {
-            let isValid = true;
+
             const fnameInput = document.getElementById("fname");
             const emailInput = document.getElementById("email");
             const phoneInput = document.getElementById("phone");
@@ -140,26 +142,26 @@ if (isset($_POST['submit'])) {
             // Validate full name
             if (fnameInput.value.trim() === "") {
                 document.getElementById("fnameError").textContent = "Please enter your full name.";
-                isValid = false;
-                
+                return false;                
 
             }
 
             // Validate email
             if (emailInput.value.trim() === "") {
                 document.getElementById("emailError").textContent = "Please enter your email address.";
-                isValid = false;
+                return false;
 
             } else if (!emailRegex.test(emailInput.value.trim())) {
                 document.getElementById("emailError").textContent = "Please enter a valid email address.";
-                isValid = false;
+                return false;
+
 
             }
 
             // Validate phone number (optional)
             if (phoneInput.value.trim() !== "" && isNaN(phoneInput.value.trim())) {
                 document.getElementById("phoneError").textContent = "Please enter a valid phone number.";
-                isValid = false;
+                return false;                
 
             }
 
@@ -168,30 +170,29 @@ if (isset($_POST['submit'])) {
             // Validate password
             if (passwordInput.value.trim() === "") {
                 document.getElementById("passwordError").textContent = "Please enter your password.";
-                isValid = false;
+                return false;                
+
 
             } else if (!passwordRegex.test(passwordInput.value.trim())) {
                 document.getElementById("passwordError").textContent = `Password must be at least 8 characters long  and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.`;
-                isValid = false;
+                return false;                
+
             }
 
             // Validate confirm password
             if (cpasswordInput.value.trim() === "") {
                 document.getElementById("cpasswordError").textContent = "Please confirm your password.";
-                isValid = false;
-
-            } else if (passwordInput.value.trim() !== cpasswordInput.value.trim()) {
-                document.getElementById("cpasswordError").textContent = "Passwords do not match.";
-                isValid = false;
-
-            }
-
-            if (!isValid) {
-                event.preventDefault();
+                return false;                
                 
+
+            } else if (passwordInput.value !== cpasswordInput.value) {
+                document.getElementById("cpasswordError").textContent = "Passwords do not match.";
+                return false;                
+
+
             }
 
-            return isValid;
+          
         }
     </script>
 </body>
