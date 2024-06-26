@@ -2,6 +2,9 @@
 <?php
 session_start();
 
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 if (!isset($_SESSION['email'])) {
     echo "<script>alert('The new Admin has been created successfully!');</script>";
     header("location: http://project.loc/Src/login/login.php");
@@ -13,6 +16,45 @@ include '../../connection.php';
 $sql = "SELECT * FROM user";
 
 $result = mysqli_query($conn, $sql);
+
+$user_id = $_SESSION['id'];
+
+// echo $user_id;
+
+// =================================================
+
+if(isset($_POST['addcart'])){
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
+    $product_image = $_POST['product_image'];
+    $product_qty = 1;
+
+    $sql = "SELECT * FROM cart WHERE product_name = '$product_name'  AND user_id = '$user_id'";
+    $items_exists = mysqli_query($conn, $sql);
+
+    
+    // Check if the product already exists in the cart
+    if (mysqli_num_rows($items_exists) > 0) {
+        $display_err = "The Product has been added Already!";
+        
+    }
+
+
+    
+else{
+    $cart_insert = "INSERT INTO cart (user_id, product_name, price_per_unit, product_image, quantity) VALUES ('$user_id','$product_name', '$product_price', '$product_image', '$product_qty')";
+
+    $cart_data = mysqli_query($conn, $cart_insert) or die ("Data Not Inserted" .  mysqli_error($conn));
+
+    if($cart_data)
+    {
+        $display_err = "The Product has been added Sucessfully!";
+    }
+
+}
+}
+
+
 
 ?>
 
@@ -32,11 +74,24 @@ $result = mysqli_query($conn, $sql);
 
 <body>
     <div id="Warpper">
-        <div id="header">
-            <?php
-            // include './navbar.php';
+        <div class="cart_icons" title="cart">
 
-            ?>
+            <a href="./cart.php"> <i class="ri-shopping-cart-2-line"></i></a>
+            <div class="cart_counter">
+                <!-- !For Show Counting Of The CART -->
+                 <?php
+                 $select_data = mysqli_query($conn, "SELECT * FROM cart WHERE user_id = $user_id") or die ("Something Wnet Wrong");
+
+                 $row_count = mysqli_num_rows($select_data);
+                 
+                 echo $row_count;
+                 
+                 ?>
+                
+            </div>
+        </div>
+        <div id="header">
+           
             <nav>
                 <div class="logo">
                     <img src="../Menus/a-sleek-and-sophisticated-logo-for-a-menu-manageme-9JRvYmr9S3-dBqWmU6Is6A-gRyYqVQtR8uOxJHKXV0XJQ.jpeg">
@@ -61,69 +116,78 @@ $result = mysqli_query($conn, $sql);
 
         </div>
 
+
         <div class="main">
+        <?php
+    if (isset($display_err)) {
+        echo "<div style='color: #FFFFFF; position: fixed top: 0; margin-bottom: 20px; background-color: #4CAF50; padding: 20px; width:40rem;'> " . $display_err .  "<span style='margin-left:40%; color:white; cursor: pointer;' onclick='this.parentElement.style.display = `none`' ><i class='ri-xrp-line'></i></span></div>";
+    }
+    ?>
+            
             <h3>Aptizzer</h3>
+            <form action="" method="POST" enctype="multipart/form-data">
 
-            <div class="box">
+                <div class="box" >
 
-                <?php
-
-                $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Appetizer' OR  item_category = 'appetizers'";
-
-
-                $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed");
-
-                // print_r($aptizer_data);
-
-                if (mysqli_num_rows($aptizer_data) > 0) {
-                    while ($row = mysqli_fetch_assoc($aptizer_data)) {
+                    <?php
+                    $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Appetizer' OR item_category = 'appetizers'";
+                    $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed: " . mysqli_error($conn));
 
 
+                    // print_r($aptizer_data);
 
-
-
-                ?>
+                    if (mysqli_num_rows($aptizer_data) > 0) {
+                        while ($row = mysqli_fetch_assoc($aptizer_data)) {
 
 
 
 
 
-                        <div class="card">
-                            <div class="top">
-                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                            </div>
+                    ?>
 
-                            <div class="bottom">
-                                <div class="detail">
-                                    <h4><?php echo  $row['item_name']; ?></h4>
+                            <div class="card">
+                                <div class="top">
+                                    <img src="<?php echo $row['image'] ?>" alt="">
 
-                                    <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
 
                                 </div>
 
-                                <div class="cart">
-                                    <button>
-                                        <a href=""> <i class="ri-shopping-cart-2-line"></i>
-                                            <span>Add to cart</span></a>
+                                <div class="bottom">
+                                    <div class="detail">
+                                        <h4><?php echo  $row['item_name']; ?></h4>
 
-                                    </button>
+                                        <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
+
+                                    </div>
+
+                                    <div class="cart">
+                                        <button name="addcart" id="addcart">
+                                            <a href=""> <i class="ri-shopping-cart-2-line"></i>
+                                            <input type="hidden" name="product_name" id="product_name" value="<?php echo  $row['item_name']; ?>">
+
+                                            <input type="hidden" name="product_price" id="product_price" value="<?php echo  $row['item_price']; ?>">
+                                            <input type="hidden" name="product_image" id="product_image" value="<?php echo $row['image'] ?>">
+                                                <span>Add to cart</span></a>
+
+                                        </button>
+                                    </div>
+
                                 </div>
-
                             </div>
-                        </div>
 
 
 
 
-                <?php
+                    <?php
+                        }
+                    } else {
+                        echo "No Data Found";
                     }
-                } else {
-                    echo "No Data Found";
-                }
 
-                ?>
-            </div>
+                    ?>
+                </div>
 
+            </form>
         </div>
 
         <!-- --------------------------------------------------------------------------------------------------------------------------- -->
@@ -132,56 +196,217 @@ $result = mysqli_query($conn, $sql);
             <h3>entree </h3>
 
 
-            <div class="box">
+            <form action="" method="POST" enctype="multipart/form-data">
 
-                <?php
+                <div class="box" >
 
-                $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Entrees' OR item_category = 'entrees' ";
-
-
-                $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed");
-
-                if (mysqli_num_rows($aptizer_data) > 0) {
-                    while ($row = mysqli_fetch_assoc($aptizer_data)) {
+                    <?php
+                    $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Entrees' OR item_category = 'entrees'";
+                    $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed: " . mysqli_error($conn));
 
 
-                ?>
+                    // print_r($aptizer_data);
 
-                        <div class="card">
+                    if (mysqli_num_rows($aptizer_data) > 0) {
+                        while ($row = mysqli_fetch_assoc($aptizer_data)) {
 
 
-                            <div class="top">
-                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
-                            </div>
 
-                            <div class="bottom">
-                                <div class="detail">
-                                    <h4><?php echo  $row['item_name']; ?></h4>
-                                    <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
 
+
+                    ?>
+
+                            <div class="card">
+                                <div class="top">
+                                    <img src="../../Admin/pages/items_images/<?php echo $row['image'] ?>" alt="">
+
+                                
                                 </div>
 
-                                <div class="cart">
-                                    <button>
-                                        <a href=""> <i class="ri-shopping-cart-2-line"></i>
-                                            <span>Add to cart</span></a>
+                                <div class="bottom">
+                                    <div class="detail">
+                                        <h4><?php echo  $row['item_name']; ?></h4>
 
-                                    </button>
+                                        <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
+
+                                    </div>
+
+                                    <div class="cart">
+                                        <button name="addcart" id="addcart">
+                                            <a href=""> <i class="ri-shopping-cart-2-line"></i>
+                                            <input type="hidden" name="product_name" id="product_name" value="<?php echo  $row['item_name']; ?>">
+
+                                            <input type="hidden" name="product_price" id="product_price" value="<?php echo  $row['item_price']; ?>">
+                                            <input type="hidden" name="product_image" id="product_image" value="<?php echo $row['image'] ?>">
+                                                <span>Add to cart</span></a>
+
+                                        </button>
+                                    </div>
+
                                 </div>
                             </div>
 
 
-                        </div>
-                <?php
+
+
+                    <?php
+                        }
+                    } else {
+                        echo "No Data Found";
                     }
-                } else {
-                    echo "No Data Found";
-                }
 
-                ?>
+                    ?>
+                </div>
 
-            </div>
+            </form>
 
+        </section>
+
+
+        <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+        <section class="main">
+            <h3>Desserts </h3>
+
+
+            <form action="" method="POST" enctype="multipart/form-data">
+
+                <div class="box" >
+
+                    <?php
+                    $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Desserts' OR item_category = 'desserts'";
+                    $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed: " . mysqli_error($conn));
+
+
+                    // print_r($aptizer_data);
+
+                    if (mysqli_num_rows($aptizer_data) > 0) {
+                        while ($row = mysqli_fetch_assoc($aptizer_data)) {
+
+
+
+
+
+                    ?>
+
+                            <div class="card">
+                                <div class="top">
+                                    <img src="<?php echo $row['image'] ?>" alt="">
+
+
+                                </div>
+
+                                <div class="bottom">
+                                    <div class="detail">
+                                        <h4><?php echo  $row['item_name']; ?></h4>
+
+                                        <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
+
+                                    </div>
+
+                                    <div class="cart">
+                                        <button name="addcart" id="addcart">
+                                            <a href=""> <i class="ri-shopping-cart-2-line"></i>
+                                            <input type="hidden" name="product_name" id="product_name" value="<?php echo  $row['item_name']; ?>">
+
+                                            <input type="hidden" name="product_price" id="product_price" value="<?php echo  $row['item_price']; ?>">
+                                            <input type="hidden" name="product_image" id="product_image" value="<?php echo $row['image'] ?>">
+                                                <span>Add to cart</span></a>
+
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                    <?php
+                        }
+                    } else {
+                        echo "No Data Found";
+                    }
+
+                    ?>
+                </div>
+
+            </form>
+
+        </section>
+
+
+
+
+        <!-- --------------------------------------------------------------------------------------------------------------------------- -->
+
+        <section class="main">
+            <h3>Beverages </h3>
+
+
+            <form action="" method="POST" enctype="multipart/form-data">
+
+                <div class="box" >
+
+                    <?php
+                    $appetizer_items = "SELECT * FROM menu_items WHERE item_category = 'Beverages' OR item_category = 'beverages'";
+                    $aptizer_data = mysqli_query($conn, $appetizer_items) or die("Query Failed: " . mysqli_error($conn));
+
+
+                    // print_r($aptizer_data);
+
+                    if (mysqli_num_rows($aptizer_data) > 0) {
+                        while ($row = mysqli_fetch_assoc($aptizer_data)) {
+
+
+
+
+
+                    ?>
+
+                            <div class="card">
+                                <div class="top">
+                                    <img src="<?php echo $row['image'] ?>" alt="">
+
+
+                                </div>
+
+                                <div class="bottom">
+                                    <div class="detail">
+                                        <h4><?php echo  $row['item_name']; ?></h4>
+
+                                        <p class="price">Rs. <span><?php echo  $row['item_price']; ?></span></p>
+
+                                    </div>
+
+                                    <div class="cart">
+                                        <button name="addcart" id="addcart">
+                                            <a href=""> <i class="ri-shopping-cart-2-line"></i>
+                                            <input type="hidden" name="product_name" id="product_name" value="<?php echo  $row['item_name']; ?>">
+
+                                            <input type="hidden" name="product_price" id="product_price" value="<?php echo  $row['item_price']; ?>">
+                                            <input type="hidden" name="product_image" id="product_image" value="<?php echo $row['image'] ?>">
+                                                <span>Add to cart</span></a>
+
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                    <?php
+                        }
+                    } else {
+                        echo "No Data Found";
+                    }
+
+                    ?>
+                </div>
+
+            </form>
 
         </section>
 
@@ -194,3 +419,14 @@ $result = mysqli_query($conn, $sql);
 </body>
 
 </html>
+
+
+<?php
+
+
+   
+
+
+
+
+?>

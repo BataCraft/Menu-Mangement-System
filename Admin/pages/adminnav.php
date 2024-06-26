@@ -5,7 +5,7 @@
     <a href="./home.php" style="font-size: 1rem; text-decoration: none; font-weight: 600; background-color: #4CAF50; padding: 0.5rem 1rem; color: #fff; border-radius: 0.25rem; transition: background-color 0.3s ease;">Home</a>
     <a href="../pages/view.php" style="font-size: 1rem; text-decoration: none; font-weight: 600; background-color: #4CAF50; padding: 0.5rem 1rem; color: #fff; border-radius: 0.25rem; transition: background-color 0.3s ease;">View users</a>
     <a href="../pages/addAdmin.php" style="font-size: 1rem; text-decoration: none; font-weight: 600; background-color: #4CAF50; padding: 0.5rem 1rem; color: #fff; border-radius: 0.25rem; transition: background-color 0.3s ease;">Add Admins</a>
-    <a href="../pages/item.php.php" style="font-size: 1rem; text-decoration: none; font-weight: 600; background-color: #4CAF50; padding: 0.5rem 1rem; color: #fff; border-radius: 0.25rem; transition: background-color 0.3s ease;">Edit Menu</a>
+    <a href="../pages/menu_items.php" style="font-size: 1rem; text-decoration: none; font-weight: 600; background-color: #4CAF50; padding: 0.5rem 1rem; color: #fff; border-radius: 0.25rem; transition: background-color 0.3s ease;">Edit Menu</a>
   </nav>
   <div>
     <a href="logout.php" id="logout_link" style="font-size: 1rem; text-decoration: none; font-weight: 600; background-color: #f44336; padding: 0.5rem 1rem; color: #fff; border-radius: 0.25rem; transition: background-color 0.3s ease;">Log Out</a>

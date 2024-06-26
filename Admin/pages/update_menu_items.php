@@ -93,10 +93,16 @@ if(isset($_POST['submit'])){
     $item_name = $_POST['item_name'];
     $item_price = $_POST['item_price'];
     $item_category = $_POST['item_category'];
-    $item_image = $_FILES['item_image'];
+    // $item_image = $_FILES['item_image'];
+
+       
+// !!Import Images / FILES
+$img_name = $_FILES["item_image"] ["name"];
+$item_temp_name = $_FILES["item_image"] ["tmp_name"];
+$item_img = "../../Admin/pages/items_images/" . $img_name;
 
 
-    $update = "UPDATE menu_items SET item_name = '$item_name', item_price = '$item_price', item_category = '$item_category' WHERE item_id = $item_id";
+    $update = "UPDATE menu_items SET item_name = '$item_name', item_price = '$item_price', item_category = '$item_category', image = '$item_img' WHERE item_id = '$item_id'";
 
     $result1 = mysqli_query($conn, $update) or die ("Something Wrong!" . mysqli_error($conn));
 

@@ -12,6 +12,8 @@ if (isset($_POST['submit'])) {
 
     $result = mysqli_query($conn, $sql) or die("Something worng!");
 
+  
+
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
             session_start();

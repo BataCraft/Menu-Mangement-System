@@ -105,11 +105,7 @@ if (isset($_POST['submit'])) {
                             <span class="error" id="cpasswordError"></span>
                         </div>
                     </section>
-<<<<<<< HEAD
                     
-=======
-                    <span class="error" id="passwordError"></span>
->>>>>>> 2da575d690424ec94338337c7eec8caa6c8b2fa8
                     <!-- Submit Button -->
                     <div class="btn">
                         <button type="submit" name="submit" value="submit">Register</button>

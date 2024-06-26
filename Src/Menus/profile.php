@@ -80,9 +80,9 @@
             background-color: #f44336;
         }
 
-        a:hover {
-            background-color: #45a049;
-        }
+        /* a:hover {
+            box-shadow: rgb(0, 0, 0);
+        } */
     </style>
 </head>
 <body>
@@ -120,7 +120,7 @@
                     <div style="text-align: center;">
 
                         <a href="./update.php?uid=<?php echo $_SESSION['id']; ?>">Update Profile</a>
-                        <a href="./deleteAccount.php?uid=<?php echo $_SESSION['id']; ?>">Delete Account</a>
+                        <a href="./deleteAccount.php?uid=<?php echo $_SESSION['id']; ?>"  onclick="return confirm('Are you sure to Delete Your account?')">Delete Account</a>
                     </div>
                 </div>
 

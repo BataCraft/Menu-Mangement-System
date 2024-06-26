@@ -38,6 +38,7 @@ $result = mysqli_query($conn, $data) or die ("Query Failed");
         <table>
             <tr>
                 <td>Menu Id</td>
+                <td> Images</td>
                 <td>Items Name</td>
                 <td>Price</td>
                 <td>Category</td>
@@ -48,15 +49,19 @@ $result = mysqli_query($conn, $data) or die ("Query Failed");
 
             <?php 
             if(mysqli_num_rows($result) > 0)
+            $num = 1;
             {
                 while($row = mysqli_fetch_assoc($result)){
+                    
                     
              
             
             
             ?>
             <tr>
-                <td><?php echo $row['item_id']?></td>
+                <td><?php echo $num;?></td>
+
+                <td><img src="<?php echo $row['image']?>" style="width: 10rem;"></td>
                 <td><?php echo $row['item_name']?></td>
                 <td><?php echo $row['item_price']?></td>
                 <td><?php echo $row['item_category']?></td>
@@ -69,7 +74,7 @@ $result = mysqli_query($conn, $data) or die ("Query Failed");
                    </button> 
 
                    <button>
-                     <a href="./Delete_menu_items.php?id=<?php echo  $row['item_id']?>">Delete</a>
+                     <a href="./Delete_menu_items.php?id=<?php echo  $row['item_id']?> " onclick="return confirm('Are you sure to remove Items?')">Delete</a>
 
                    </button> 
                   
@@ -78,6 +83,7 @@ $result = mysqli_query($conn, $data) or die ("Query Failed");
             </tr>
 
             <?php
+            $num++;
                }
             }
             

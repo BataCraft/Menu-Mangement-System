@@ -82,22 +82,24 @@
 
 
       <?php
+       $num = 1;
       while ($row = mysqli_fetch_assoc($result)) {
       ?>
 
         <tr>
-          <td><?php echo $row['id'] ?></td>
+          <td><?php echo $num; ?></td>
+
           <td><?php echo $row['a_name'] ?></td>
           <td><?php echo $row['a_email'] ?></td>
           <td><?php echo $row['a_phone'] ?></td>
           <td><?php echo $row['created_at'] ?></td>
           <td>
-            <a href="../pages/deleteAdmin.php?id=<?php echo $row['id']; ?>" id="remove">Remove Admin</a>
+            <a href="../pages/deleteAdmin.php?id=<?php echo $row['id']; ?>" id="remove" onclick="return confirm('Are you sure to remove admin?')">Remove Admin</a>
           </td>
         </tr>
 
 
-      <?php } ?>
+      <?php $num++; } ?>
 
 
     </table>

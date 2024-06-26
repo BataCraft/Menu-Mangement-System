@@ -62,19 +62,21 @@ $data = mysqli_query($conn, $sql) or die ("Queary Failed");
     <th>Remove user</th>
     </tr>";
 
- 
+ $num = 1;
     while ($row = mysqli_fetch_assoc($data)) {
         echo "<tr>
-            <td>".$row['uid']."</td>
+            <td>".$num."</td>
             <td>".$row['fname']."</td>
             <td>".$row['uphone']."</td>
             <td>".$row['uemail']."</td>
             <td>".$row['address']."</td>
             <td><a href='deleteuser.php?uid=".$row['uid']."'>Remove user</a></td>
         </tr>";
+    $num++;
     }
     
     echo "</table>";
+
     ?>
 </div>
 
