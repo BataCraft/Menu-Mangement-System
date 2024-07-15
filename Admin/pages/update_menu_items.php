@@ -25,11 +25,11 @@ $result = mysqli_query($conn, $sql)  or die ("Something wrong!");
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Add Menu Item</title>
+    <title>Update Menu Item</title>
     <link rel="stylesheet" href="./menu_css/Addmenu_items.css">
 </head>
 <body>
-    <h1>Add Menu Item</h1>
+    <h1>Update Menu Item</h1>
     <form method="post" action="" enctype="multipart/form-data">
 
     <?php
@@ -72,7 +72,7 @@ $result = mysqli_query($conn, $sql)  or die ("Something wrong!");
         ?>
 
         <label for="item_image">Item Image:</label>
-        <input type="file" id="item_image" name="item_image" accept="image/*" ><br>
+        <input type="file" id="item_image" name="item_old_image" accept="image/*" value="<?php echo $row['image']?>" ><br>
 
         <input type="submit" name="submit" value="Update Item">
 
@@ -86,20 +86,32 @@ $result = mysqli_query($conn, $sql)  or die ("Something wrong!");
 </html>
 
 
-<?php 
+<?php  
 
 if(isset($_POST['submit'])){
     
     $item_name = $_POST['item_name'];
     $item_price = $_POST['item_price'];
     $item_category = $_POST['item_category'];
-    // $item_image = $_FILES['item_image'];
+    $item_old_image = $_POST['item_old_image'];
+    $new_image = $_FILES['item_image']['name'];
 
        
 // !!Import Images / FILES
-$img_name = $_FILES["item_image"] ["name"];
+
+if($new_image != '')
+{
+    $img_name = $_FILES["item_image"] ["name"];
+}
+else{
+    $img_name = $item_old_image;
+
+}
+
+ $img_name = $_FILES["item_image"] ["name"];
 $item_temp_name = $_FILES["item_image"] ["tmp_name"];
 $item_img = "../../Admin/pages/items_images/" . $img_name;
+
 
 
     $update = "UPDATE menu_items SET item_name = '$item_name', item_price = '$item_price', item_category = '$item_category', image = '$item_img' WHERE item_id = '$item_id'";

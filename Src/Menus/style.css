@@ -157,7 +157,7 @@ nav .profile i {
 
 .card {
     min-width: 500px;
-    max-width: 800px;
+    max-width: 500px;
     margin: 0;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
     padding: 20px;
@@ -225,26 +225,31 @@ span{
     flex-direction: row;
     padding-top: 18px; 
 }
-.cart button{
+
+.cart .btns
+{
     
     background-color: #129226;
     padding: .6rem 1.2rem;
     border-radius: 10px;
     transition: all ease-in .3s;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
     
 }
 
-.cart button:hover{
+.cart .btns:hover{
     background-color: #0D6D1C;
 }
 
-.cart a{
+.cart .a{
     font-size: 1.2rem;
     text-decoration: none;
     color: #FAFAFA;
 }
 
-.cart a span{
+.cart .a .btns{
     color: #FAFAFA;
 }
 
@@ -268,7 +273,7 @@ span{
     cursor: pointer;
     
 }
-.cart_icon a{
+.cart_icon .a{
 
     text-decoration: none;
 }
@@ -288,4 +293,18 @@ span{
     right: -20%;
     font-size: 32px;
     font-weight: 700;
+}
+
+
+.search-item {
+    display: flex;
+    /* flex-wrap: wrap;
+    flex-direction: row; */
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.search-item img {
+    margin-right: 10px;
 }

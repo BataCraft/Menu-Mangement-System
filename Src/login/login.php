@@ -51,8 +51,10 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../CSS/register.css">
 
     <style>
-        #errorMsg {
+        .errorMsg {
             color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
         }
     </style>
 </head>
@@ -69,27 +71,22 @@ if (isset($_POST['submit'])) {
                         <div class="fields">
                             <label for="email">Email Address</label>
                             <input type="email" value="" placeholder="Enter your email address" id="email" name="email">
-                            <span id="errorMsg"></span>
+                            <span id="emailError" class="errorMsg"></span>
                         </div>
 
-                        <!-- USer password -->
+                        <!-- User password -->
                         <div class="fields">
                             <label for="password">Password</label>
                             <input type="password" value="" placeholder="Enter your password" name="password" id="password">
-                            <span id="errorMsg"></span>
-                            <span><a href="forgetpassword.php">forgot password?</a></span>
+                            <span id="passwordError" class="errorMsg"></span>
                         </div>
                     </section>
 
-
                     <!-- Submit button -->
                     <div class="login_btns">
-
                         <div class="btn">
                             <button name="submit" type="submit" id="login">Login</button>
-
                         </div>
-
 
                         <div class="btn" id="register">
                             <hr>
@@ -98,63 +95,60 @@ if (isset($_POST['submit'])) {
                             </button>
                         </div>
                     </div>
-                   
                 </form>
-
-
-
             </div>
         </div>
-
     </div>
 
     <script>
         const emailInput = document.getElementById('email');
         const passwordInput = document.getElementById('password');
         const loginForm = document.getElementById('login_form');
-        const errorMsgs = document.querySelectorAll('.errorMsg');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
 
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-
-        loginForm.addEventListener('submit', (e) => {
-            let isValid = true;
-
-            // Reset error messages
-            errorMsgs.forEach(msg => msg.textContent = '');
-
-            // Validate email
+        function validateEmail() {
             if (emailInput.value.trim() === '') {
-                emailInput.nextElementSibling.textContent = 'Please enter your email address.';
-                isValid = false;
+                emailError.textContent = 'Please enter your email address.';
+                return false;
             } else if (!emailRegex.test(emailInput.value.trim())) {
-                emailInput.nextElementSibling.textContent = 'Please enter a valid email address.';
-                isValid = false;
+                emailError.textContent = 'Please enter a valid email address.';
+                return false;
+            } else {
+                emailError.textContent = '';
+                return true;
             }
+        }
 
-            // Validate password
+        function validatePassword() {
             if (passwordInput.value.trim() === '') {
-                passwordInput.nextElementSibling.textContent = 'Please enter your password.';
-                isValid = false;
+                passwordError.textContent = 'Please enter your password.';
+                return false;
+            } else {
+                passwordError.textContent = '';
+                return true;
             }
+        }
 
-            // Prevent form submission if validation fails
-            if (!isValid) {
+        emailInput.addEventListener('input', validateEmail);
+        passwordInput.addEventListener('input', validatePassword);
+
+        loginForm.addEventListener('submit', function(e) {
+            const isEmailValid = validateEmail();
+            const isPasswordValid = validatePassword();
+
+            if (!isEmailValid || !isPasswordValid) {
                 e.preventDefault();
             }
         });
-
-
-
-
-
 
         // Check if the session variable or flag is set
         <?php if (isset($_SESSION['login_error']) && $_SESSION['login_error']) { ?>
             document.getElementById('errorMessage').style.display = 'block';
         <?php } ?>
     </script>
-
 </body>
 
 </html>

@@ -9,8 +9,8 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $phone = $_POST['phone'];
     $address = $_POST['address'];
-    $password =sha1($_POST['password']) ;
-    $cpassword = sha1($_POST['cpassword']) ;
+    $password = sha1($_POST['password']);
+    $cpassword = sha1($_POST['cpassword']);
     // $message = '';
 
 
@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
     $check = "SELECT * FROM user WHERE uemail = '$email'";
 
     $data_check = mysqli_query($conn, $check);
-//check if the email is already exits in database
+    //check if the email is already exits in database
     if (mysqli_num_rows($data_check) > 0) {
         // Use PHP to echo JavaScript after DOM is loaded
         echo '<script>';
@@ -28,8 +28,7 @@ if (isset($_POST['submit'])) {
         echo '    }';
         echo '});';
         echo '</script>';
-    }
-     else {
+    } else {
 
 
         // the next step when the user enter email is while not exist in database......
@@ -111,7 +110,7 @@ if (isset($_POST['submit'])) {
                             <span class="error" id="cpasswordError"></span>
                         </div>
                     </section>
-                    
+
                     <!-- Submit Button -->
                     <div class="btn">
                         <button type="submit" name="submit" value="submit">Register</button>
@@ -134,7 +133,7 @@ if (isset($_POST['submit'])) {
             const passwordInput = document.getElementById("password");
             const cpasswordInput = document.getElementById("cpassword");
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()]).{8,}$/;
+            // const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()]).{8,}$/;
 
             // Reset error messages
             document.querySelectorAll(".error").forEach(span => span.textContent = "");
@@ -142,7 +141,7 @@ if (isset($_POST['submit'])) {
             // Validate full name
             if (fnameInput.value.trim() === "") {
                 document.getElementById("fnameError").textContent = "Please enter your full name.";
-                return false;                
+                return false;
 
             }
 
@@ -161,39 +160,38 @@ if (isset($_POST['submit'])) {
             // Validate phone number (optional)
             if (phoneInput.value.trim() !== "" && isNaN(phoneInput.value.trim())) {
                 document.getElementById("phoneError").textContent = "Please enter a valid phone number.";
-                return false;                
+                return false;
 
             }
 
             // Validate address (optional)
+            var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
             // Validate password
             if (passwordInput.value.trim() === "") {
-                document.getElementById("passwordError").textContent = "Please enter your password.";
-                return false;                
-
-
+                passwordError.textContent = "Please enter your password.";
+                return false;
             } else if (!passwordRegex.test(passwordInput.value.trim())) {
-                document.getElementById("passwordError").textContent = `Password must be at least 8 characters long  and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.`;
-                return false;                
-
+                passwordError.textContent = "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+                return false;
+            } else {
+                passwordError.textContent = ""; // Clear any previous error message
             }
 
             // Validate confirm password
             if (cpasswordInput.value.trim() === "") {
-                document.getElementById("cpasswordError").textContent = "Please confirm your password.";
-                return false;                
-                
-
-            } else if (passwordInput.value !== cpasswordInput.value) {
-                document.getElementById("cpasswordError").textContent = "Passwords do not match.";
-                return false;                
-
-
+                cpasswordError.textContent = "Please confirm your password.";
+                return false;
+            } else if (passwordInput.value.trim() !== cpasswordInput.value.trim()) {
+                cpasswordError.textContent = "Passwords do not match.";
+                return false;
+            } else {
+                cpasswordError.textContent = ""; // Clear any previous error message
             }
 
-          
+            return true;
         }
+        
     </script>
 </body>
 
